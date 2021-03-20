@@ -2,20 +2,33 @@
 
 This is an E-Commerce Web Application for Womega Online Shopping.
 
-## Installation
+## Requirement
 
-After cloning this repo, you need to install the following Nuget packages:
+- .NET Core
+- vuejs
+- Bulma - CSS framework for UI
 
-```bash
-JavaScriptEngineSwitcher.V8
+## Description
 
-JavaScriptEngineSwitcher.ChakraCore
+### .NET Core
+  - Application Layer - Products/ Stock/ Order
+  - Entity Framework Core - Database
+  - Authentication - Identity, Claim-Based, Admin, User
+  - Sessions/Cache - Cart History
 
-JavaScriptEngineSwitcher.V8.Native.win-x64
+### Admin Control Panel
+  - Creating / Managing Products
+  - Managing Stocks
+  - Managing Orders
+  - Vuejs + Bulma -> Both for Ui, Vuejs specifically for Admin Control Panel. Most of UI is done is Bulma.
 
-JavaScriptEngineSwitcher.ChakraCore.Native.win-x64
+### WomegaWebApp Shop
 
-JavaScriptEngineSwitcher.Extensions.MsDependencyInjection
-```
+  - Product - Category/ Type filter
+  - Cart
+  - Checkout
+  - Payment - stripe.js
 
-After these installations, you will be able to build and run the project
+## Layers (internal Projects)
+
+In Application layer, all it's going to do is handle all of our models in our domain between the database  & UI layer. Thus, Application acts like API for the WomegaWebApp.
