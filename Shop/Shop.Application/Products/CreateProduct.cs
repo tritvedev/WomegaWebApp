@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Shop.Database;
+using Shop.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using WomegaWebApp.Database;
-using WomegaWebApp.Domain.Models;
 
-namespace WomegaWebApp.Application.Products
+namespace Shop.Application.Products
 {
     public class CreateProduct
     {
@@ -15,11 +15,11 @@ namespace WomegaWebApp.Application.Products
             _context = context;
         }
 
-        public void Do(int Id, string Name, string Description)
+        public void Do(int id, string Name, string Description)
         {
             _context.Products.Add(new Product
             {
-                Id = Id,
+                Id = id,
                 Name = Name,
                 Description = Description
             });
