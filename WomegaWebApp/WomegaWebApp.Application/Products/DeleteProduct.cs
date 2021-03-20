@@ -4,7 +4,8 @@ using System.Text;
 
 namespace WomegaWebApp.Application.Products
 {
-    class DeleteProduct
+    public class DeleteProduct
     {
+
     }
 }
