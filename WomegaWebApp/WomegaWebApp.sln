@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WomegaWebApp.Domain", "Wome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WomegaWebApp.Application", "WomegaWebApp.Application\WomegaWebApp.Application.csproj", "{AE3EA6AA-9120-4FBA-A6E8-DB901CA9838D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WomegaWebApp.Database", "WomegaWebApp.Database\WomegaWebApp.Database.csproj", "{F4AB1FF1-38A7-4C77-989B-8CCF7CED41F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AE3EA6AA-9120-4FBA-A6E8-DB901CA9838D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3EA6AA-9120-4FBA-A6E8-DB901CA9838D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3EA6AA-9120-4FBA-A6E8-DB901CA9838D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4AB1FF1-38A7-4C77-989B-8CCF7CED41F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4AB1FF1-38A7-4C77-989B-8CCF7CED41F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4AB1FF1-38A7-4C77-989B-8CCF7CED41F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4AB1FF1-38A7-4C77-989B-8CCF7CED41F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
