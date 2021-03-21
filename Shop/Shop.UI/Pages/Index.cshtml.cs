@@ -17,6 +17,9 @@ namespace Shop.UI.Pages
             _ctx = ctx;
         }
 
+        [BindProperty]
+        public int MyProperty { get; set; }
+
         public IEnumerable<GetProducts.ProductViewModel> Products { get; set; }
 
         public void OnGet()
