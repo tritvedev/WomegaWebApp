@@ -4,8 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Shop.Application\Shop.Application.csproj" />
+	</ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Shop.Application\Shop.Application.csproj" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13" />
   </ItemGroup>
