@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Application.ProductsAdmin;
 using Shop.Database;
+using System.Threading.Tasks;
 
 namespace Shop.UI.Controllers
 {
@@ -21,12 +22,12 @@ namespace Shop.UI.Controllers
         public IActionResult GetProduct(int Id) => Ok(new GetProduct(_ctx).Do(Id));
 
         [HttpPost("products")]
-        public IActionResult CreateProduct(CreateProduct.ProductViewModel vm) => Ok(new CreateProduct(_ctx).Do(vm));
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProduct.Request request) => Ok(await new CreateProduct(_ctx).Do(request)); // FromBody because we are putting data in JSON format
 
         [HttpDelete("products/{Id}")]
-        public IActionResult DeleteProduct(int Id) => Ok(new DeleteProduct(_ctx).Do(Id));
+        public async Task<IActionResult> DeleteProduct(int Id) => Ok((await new DeleteProduct(_ctx).Do(Id)));
 
         [HttpPut("products")]
-        public IActionResult UpdateProduct(UpdateProduct.ProductViewModel vm) => Ok(new UpdateProduct(_ctx).Do(vm));
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProduct.Request request) => Ok(await new UpdateProduct(_ctx).Do(request)); // FromBody because we are updating data in JSON format
     }
 }
