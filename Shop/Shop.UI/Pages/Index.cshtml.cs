@@ -1,30 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Shop.Application.Products;
-using Shop.Database;
-using System.Collections;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.UI.Pages
 {
     public class IndexModel : PageModel
     {
-        private ApplicationDbContext _ctx;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ApplicationDbContext ctx)
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            _ctx = ctx;
+            _logger = logger;
         }
-
-        [BindProperty]
-        public int MyProperty { get; set; }
-
-        public IEnumerable<GetProducts.ProductViewModel> Products { get; set; }
 
         public void OnGet()
         {
-            Products = new GetProducts(_ctx).Do();
+
         }
     }
 }
