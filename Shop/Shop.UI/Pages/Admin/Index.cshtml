@@ -6,10 +6,15 @@
 }
 
 <div id="app">
-    
-    <input type="number" v-model="price"/>
-    <p>
+
+    <input type="number" @@change="alert('hello')" v-model="price" />
+    <button v-on:click="togglePrice">Toggle</button>
+    <p v-show="showPrice">
         {{price}}
+    </p>
+
+    <p v-if="showPrice">
+        {{formatPrice}}
     </p>
 
 </div>
