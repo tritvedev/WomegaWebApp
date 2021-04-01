@@ -7,21 +7,19 @@
 
 <div id="app">
 
-    <input type="number" @@change="alert('hello')" v-model="price" />
-    <button v-on:click="togglePrice">Toggle</button>
     <button v-on:click="getProducts">Get Products</button>
-    <p v-show="showPrice">
-        {{price}}
-    </p>
-
-    <p v-if="showPrice">
-        {{formatPrice}}
-    </p>
 
     <div>
         <p v-for="product in products">
             {{product.id}} - {{product.name}} - {{product.description}} - {{product.value}}
         </p>
+    </div>
+
+    <div>
+        <input v-model="productModel.name" />
+        <input v-model="productModel.description" />
+        <input v-model.number="productModel.value" />
+        <button @@click="createProduct">Create Product</button>
     </div>
 
 </div>
