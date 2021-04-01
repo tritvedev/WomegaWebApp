@@ -21,22 +21,22 @@
                     console.log(err);
                 })
                 .then(() => {
-                    this.loading = false
-                });
+                    this.loading = false;
+                })
         },
         createProduct() {
             this.loading = true;
             axios.post('/Admin/products', this.productModel)
                 .then(res => {
-                    console.log(res).data;
+                    console.log(res.data);
                     this.products.push(res.data);
                 })
                 .catch(err => {
                     console.log(err);
                 })
                 .then(() => {
-                    this.loading = false
-                });
+                    this.loading = false;
+                })
         }
     },
     computed: {

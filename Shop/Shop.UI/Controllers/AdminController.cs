@@ -25,13 +25,13 @@ namespace Shop.UI.Controllers
         public IActionResult GetProduct(int id) => Ok(new GetProduct(_ctx).Do(id));
 
         [HttpPost("products")]
-        public IActionResult CreateProduct([FromBody] CreateProduct.Request request) => Ok(new CreateProduct(_ctx).Do(request));
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProduct.Request request) => Ok(await new CreateProduct(_ctx).Do(request));
 
         [HttpDelete("products/{id}")]
-        public IActionResult DeleteProduct(int id) => Ok(new DeleteProduct(_ctx).Do(id));
+        public async Task<IActionResult> DeleteProduct(int id) => Ok(await new DeleteProduct(_ctx).Do(id));
 
         [HttpPut("products")]
-        public IActionResult UpdateProducts([FromBody] UpdateProduct.ProductViewModel vm) => Ok(new UpdateProduct(_ctx).Do(vm));
+        public async Task<IActionResult> UpdateProducts([FromBody] UpdateProduct.Request request) => Ok(await new UpdateProduct(_ctx).Do(request));
 
     }
 }
