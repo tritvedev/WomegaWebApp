@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Shop.UI</title>
-    <link rel="stylesheet" href="~/css/site.css" />
 
     <environment include="Development">
         <link href="~/lib/bulma/css/bulma.css" rel="stylesheet" />
@@ -17,9 +16,7 @@
 </head>
 <body>
     <header>
-        <h3 class="has-text-centered">Admin Panel</h3>
-        
-
+        <h3 class="title has-text-centered">Admin Panel</h3>
         <div class="container">
             <div class="columns">
                 <div class="column is-3">
@@ -51,7 +48,9 @@
         </div>
     </footer>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
