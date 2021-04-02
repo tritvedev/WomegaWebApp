@@ -4,3 +4,14 @@
     ViewData["Title"] = "Home page";
 }
 
+<div>
+    @{ 
+        foreach(var p in Model.Products)
+        {
+            <a asp-page="Product" asp-route-name="@p.Name.Replace(" ","-")">
+                @p.Name - @p.Description - @p.Value 
+            </a>
+            <br />
+        }
+    }
+</div>
