@@ -5,22 +5,25 @@
 
 }
 
-<div id="app">
-    <div>
-        <p v-for="(product, index) in products">
-            {{product.id}} - {{product.name}} - {{product.value}}
-            <a href="#" @@click="editProduct(product.id, index)"> Edit </a>
-            <a href="#" @@click="deleteProduct(product.id, index)"> Remove </a>
-        </p>
+<div id="app" class="container">
+    <div class="columns">
+        <div class="column is-3" >
+            <div class="menu">
+                <p class="menu-label"> Admin Menu </p>
+                <ul class="menu-list">
+                    <li> <a href="#">Products</a> </li>
+                    <li> <a href="#">Orders</a> </li>
+                    <li> <a href="#">Stock</a> </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column is-9">
+            <product-manager></product-manager>
+        </div>
     </div>
 
-    <div>
-        <input v-model="productModel.name" />
-        <input v-model="productModel.description" />
-        <input v-model.number="productModel.value" />
-        <button @@click="createProduct" v-if="!productModel.id">Create Product</button>
-        <button @@click="updateProduct" v-else>Update Product</button>
-    </div>
+    
 
 </div>
 
@@ -28,5 +31,6 @@
 @section scripts{
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/admin/product-component.js"></script>
     <script src="~/js/admin/main.js"></script>
 }
