@@ -18,7 +18,7 @@
                 }
             </select>
             <label>Quantity: </label>
-            <input v-model.number="CartViewModel.Qty"/>
+            <input type="number" asp-for="CartViewModel.Qty"/>
             <button type="submit">Submit</button>
         </form>
     </div>
