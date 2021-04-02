@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shop.Application.Products;
@@ -16,6 +17,14 @@ namespace Shop.UI.Pages
         public ProductModel(ApplicationDbContext ctx)
         {
             _ctx = ctx;
+        }
+
+        [BindProperty]
+        public Test ProductTest { get; set; }
+
+        public class Test
+        {
+            public string Id { get; set; }
         }
 
         public GetProduct.ProductViewModel Product { get; set; }
@@ -33,6 +42,16 @@ namespace Shop.UI.Pages
             {
                 return Page();
             }
+        }
+
+        public IActionResult OnPost()
+        {
+            var current_id = HttpContext.Session.GetString("id");
+
+            HttpContext.Session.SetString("id", ProductTest.Id);
+
+
+            return RedirectToPage("Index");
         }
     }
 }
