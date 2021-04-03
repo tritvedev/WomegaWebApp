@@ -48,7 +48,7 @@ namespace Shop.UI.Pages.Checkout
             var customers = new CustomerService();
             var charges = new ChargeService();
 
-            var CartOrder = new GetOrder(HttpContext.Session, _ctx).Do();
+            var CartOrder = new Application.Cart.GetOrder(HttpContext.Session, _ctx).Do();
 
             var customer = customers.Create(new CustomerCreateOptions
             {
@@ -76,7 +76,7 @@ namespace Shop.UI.Pages.Checkout
                 Address2 = CartOrder.CustomerInformation.Address2,
                 City = CartOrder.CustomerInformation.City,
                 PostCode = CartOrder.CustomerInformation.PostCode,
-                StripReference = charge.OrderId,
+                StripReference = charge.Id,
 
                 Stocks = CartOrder.Products.Select(x => new CreateOrder.Stock
                 {

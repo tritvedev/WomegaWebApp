@@ -19,6 +19,15 @@ namespace Shop.Application.Orders
 
         public async Task<bool> Do( Request request)
         {
+            var stocksToUpdate = _ctx.Stock
+                                    .AsEnumerable()
+                                    .Where(x => request.Stocks.Any(y => y.StockId == x.Id)).ToList(); // any stock submitted in database is retived
+
+            foreach(var stock in stocksToUpdate)
+            {
+                stock.Qty = stock.Qty - request.Stocks.AsEnumerable().FirstOrDefault(x => x.StockId == stock.Id).Qty; // take the stock quantity and subtract it with the quantity that user orders
+            }
+
             var order = new Order
             {
                 StripeReference = request.StripReference,
