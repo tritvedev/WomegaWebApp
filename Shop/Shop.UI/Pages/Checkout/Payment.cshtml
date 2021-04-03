@@ -8,7 +8,7 @@
 <h2>Payment</h2>
 
 <div>
-    <form  method="post" id="payment-form">
+    <form method="post" id="payment-form">
         <div class="form-row">
             <label for="card-element">
                 Credit or debit card
@@ -25,7 +25,7 @@
     </form>
 </div>
 
-@section scripts{ 
+@section scripts{
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // Set your publishable key: remember to change this to your live publishable key in production
@@ -80,3 +80,5 @@
 
     </script>
 }
+
+@await Component.InvokeAsync("Cart")
