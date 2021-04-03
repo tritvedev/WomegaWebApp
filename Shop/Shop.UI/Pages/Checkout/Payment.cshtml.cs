@@ -6,18 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Shop.Application.Cart;
+using Shop.Database;
 using Stripe;
 
 namespace Shop.UI.Pages.Checkout
 {
     public class PaymentModel : PageModel
     {
-        public PaymentModel(IConfiguration config)
+        public string PublicKey { get; }
+
+        private ApplicationDbContext _ctx;
+
+        public PaymentModel(IConfiguration config, ApplicationDbContext ctx)
         {
             PublicKey = config["Stripe:PublicKey"].ToString();
+            _ctx = ctx;
         }
-
-        public string PublicKey { get; }
+               
 
         public IActionResult OnGet()
         {
@@ -38,6 +43,8 @@ namespace Shop.UI.Pages.Checkout
             var customers = new CustomerService();
             var charges = new ChargeService();
 
+            var CartOrder = new GetOrder(HttpContext.Session, _ctx).Do();
+
             var customer = customers.Create(new CustomerCreateOptions
             {
                 Email = stripeEmail,
@@ -46,9 +53,9 @@ namespace Shop.UI.Pages.Checkout
 
             var charge = charges.Create(new ChargeCreateOptions
             {
-                Amount = 999,
-                Description = "Sample Charge",
-                Currency = "usd",
+                Amount = CartOrder.GetTotalCharge(),
+                Description = "Shop Purchase",
+                Currency = "eur",
                 Customer = customer.Id
             });
 
