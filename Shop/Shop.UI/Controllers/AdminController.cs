@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shop.Application.ProductsAdmin;
 using Shop.Application.StockAdmin;
 using Shop.Database;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Shop.UI.Controllers
 {
     [Route("{controller}")]
+    [Authorize(Policy = "Admin")]
     public class AdminController : Controller
     {
         private ApplicationDbContext _ctx;
@@ -43,7 +45,7 @@ namespace Shop.UI.Controllers
 
         /*
         * 
-        *          Products Stock Controller
+        *           Stocks Admin Controller
         * 
         * */
 
