@@ -64,11 +64,15 @@ namespace Shop.UI.Pages.Checkout
                 Customer = customer.Id
             });
 
+
+            var sessionId = HttpContext.Session.Id;
+
             // create order
 
             await new CreateOrder(_ctx).Do(new CreateOrder.Request
             {
                 FirstName = CartOrder.CustomerInformation.FirstName,
+                SessionId = sessionId,
                 LastName = CartOrder.CustomerInformation.LastName,
                 Email = CartOrder.CustomerInformation.Email,
                 PhoneNumber = CartOrder.CustomerInformation.PhoneNumber,

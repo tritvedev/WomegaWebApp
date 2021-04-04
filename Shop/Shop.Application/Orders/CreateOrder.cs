@@ -19,14 +19,11 @@ namespace Shop.Application.Orders
 
         public async Task<bool> Do( Request request)
         {
-            var stocksToUpdate = _ctx.Stock
+            var stockOnHold = _ctx.StocksOnHold
                                     .AsEnumerable()
-                                    .Where(x => request.Stocks.Any(y => y.StockId == x.Id)).ToList(); // any stock submitted in database is retived
+                                    .Where(x => x.SessionId == request.SessionId).ToList(); // any stock submitted in database is retived
 
-            foreach(var stock in stocksToUpdate)
-            {
-                stock.Qty = stock.Qty - request.Stocks.AsEnumerable().FirstOrDefault(x => x.StockId == stock.Id).Qty; // take the stock quantity and subtract it with the quantity that user orders
-            }
+            _ctx.StocksOnHold.RemoveRange(stockOnHold);
 
             var order = new Order
             {
@@ -78,6 +75,7 @@ namespace Shop.Application.Orders
         public class Request
         {
             public string StripReference { get; set; }
+            public string SessionId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string Email { get; set; }
