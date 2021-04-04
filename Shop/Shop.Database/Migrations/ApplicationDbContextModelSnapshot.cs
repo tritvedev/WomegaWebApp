@@ -339,7 +339,7 @@ namespace Shop.Database.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("StocksOnHolds");
+                    b.ToTable("StocksOnHold");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

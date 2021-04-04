@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Shop.Database.Migrations
 {
-    public partial class OrderStock : Migration
+    public partial class StockOnHold : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -211,7 +211,7 @@ namespace Shop.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderStocks",
+                name: "OrderStock",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -220,15 +220,36 @@ namespace Shop.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderStocks", x => new { x.StockId, x.OrderId });
+                    table.PrimaryKey("PK_OrderStock", x => new { x.StockId, x.OrderId });
                     table.ForeignKey(
-                        name: "FK_OrderStocks_Orders_OrderId",
+                        name: "FK_OrderStock_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderStocks_Stock_StockId",
+                        name: "FK_OrderStock_Stock_StockId",
+                        column: x => x.StockId,
+                        principalTable: "Stock",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StocksOnHold",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StockId = table.Column<int>(type: "int", nullable: false),
+                    Qty = table.Column<int>(type: "int", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StocksOnHold", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StocksOnHold_Stock_StockId",
                         column: x => x.StockId,
                         principalTable: "Stock",
                         principalColumn: "Id",
@@ -275,14 +296,19 @@ namespace Shop.Database.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderStocks_OrderId",
-                table: "OrderStocks",
+                name: "IX_OrderStock_OrderId",
+                table: "OrderStock",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stock_ProductId",
                 table: "Stock",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StocksOnHold_StockId",
+                table: "StocksOnHold",
+                column: "StockId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -303,7 +329,10 @@ namespace Shop.Database.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "OrderStocks");
+                name: "OrderStock");
+
+            migrationBuilder.DropTable(
+                name: "StocksOnHold");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

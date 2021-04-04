@@ -15,7 +15,7 @@ namespace Shop.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stock { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<StocksOnHold> StocksOnHolds { get; set; }
+        public DbSet<StocksOnHold> StocksOnHold { get; set; }
 
         // sets up composite keys because we have two primary keys in OrderProducts theoretically
         protected override void OnModelCreating(ModelBuilder modelBuilder)

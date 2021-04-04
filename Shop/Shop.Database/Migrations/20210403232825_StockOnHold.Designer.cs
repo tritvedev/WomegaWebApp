@@ -10,7 +10,7 @@ using Shop.Database;
 namespace Shop.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210403225651_StockOnHold")]
+    [Migration("20210403232825_StockOnHold")]
     partial class StockOnHold
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -341,7 +341,7 @@ namespace Shop.Database.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("StocksOnHolds");
+                    b.ToTable("StocksOnHold");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
