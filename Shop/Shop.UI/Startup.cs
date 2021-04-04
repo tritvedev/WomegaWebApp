@@ -33,7 +33,7 @@ namespace Shop.UI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["ShopDBConnection"]));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -103,7 +103,8 @@ namespace Shop.UI
             
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute("default", "api/{controller=Admin}/{id=?id}");
                 endpoints.MapRazorPages();
             });
         }
