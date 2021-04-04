@@ -35,7 +35,7 @@ namespace Shop.Application.Cart
             {
                 StockId = stockToHold.Id,
                 Qty = request.Qty,
-                ExpiryDate = DateTime.Now.AddMinutes(1)        // hold it for 20 mins
+                ExpiryDate = DateTime.Now.AddMinutes(20)        // hold it for 20 mins
             });
 
             stockToHold.Qty -= request.Qty;
