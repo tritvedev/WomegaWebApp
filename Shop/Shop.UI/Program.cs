@@ -25,7 +25,7 @@ namespace Shop.UI
                 using (var scope = host.Services.CreateScope())
                 {
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    var userManger = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
                     context.Database.EnsureCreated();
 
@@ -41,14 +41,14 @@ namespace Shop.UI
                             UserName = "manager"
                         };
 
-                        userManger.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
-                        userManger.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
+                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
+                        userManager.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
 
                         var adminClaim = new Claim("Role", "Admin");
                         var managerClaim = new Claim("Role", "Manager");
 
-                        userManger.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
-                        userManger.AddClaimAsync(managerUser, managerClaim).GetAwaiter().GetResult();
+                        userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
+                        userManager.AddClaimAsync(managerUser, managerClaim).GetAwaiter().GetResult();
                     }
                 }
             }

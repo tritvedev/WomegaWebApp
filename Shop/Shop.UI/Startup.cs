@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop.Application.UsersAdmin;
 using Shop.Database;
 using Stripe;
 using System;
@@ -66,6 +67,7 @@ namespace Shop.UI
                 .AddRazorPagesOptions( options =>
                 {
                     options.Conventions.AuthorizeFolder("/Admin");
+                    options.Conventions.AuthorizePage("/Admin/ConfigureUsers", "Admin");
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
@@ -76,6 +78,8 @@ namespace Shop.UI
             });
 
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+
+            services.AddTransient<CreateUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
