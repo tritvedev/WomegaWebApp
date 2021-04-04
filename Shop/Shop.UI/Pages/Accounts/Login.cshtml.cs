@@ -26,20 +26,21 @@ namespace Shop.UI.Pages.Accounts
 
         public async Task<IActionResult> OnPost()
         {
-            var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, false, false);
+
             if (result.Succeeded)
             {
                 return RedirectToPage("/Admin/Index");
             }
             else
             {
-                return Page();  // back to the same page
+                return Page();
             }
         }
 
         public class LoginViewModel
         {
-            public string UserName { get; set; }
+            public string Username { get; set; }
             public string Password { get; set; }
         }
     }

@@ -25,11 +25,11 @@ namespace Shop.UI
                 using (var scope = host.Services.CreateScope())
                 {
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    var userManger = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
                     context.Database.EnsureCreated();
 
-                    if (!context.Users.Any()) // if there are not many users
+                    if (!context.Users.Any())
                     {
                         var adminUser = new IdentityUser()
                         {
@@ -41,15 +41,14 @@ namespace Shop.UI
                             UserName = "manager"
                         };
 
-                        userManager.CreateAsync(adminUser, "admin").GetAwaiter().GetResult();       // creates a specific user in the backend with no password
-                        userManager.CreateAsync(managerUser, "manager").GetAwaiter().GetResult();       // creates a specific user in the backend with no password
+                        userManger.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
+                        userManger.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
 
                         var adminClaim = new Claim("Role", "Admin");
                         var managerClaim = new Claim("Role", "Manager");
 
-                        userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
-                        userManager.AddClaimAsync(managerUser, adminClaim).GetAwaiter().GetResult();
-
+                        userManger.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
+                        userManger.AddClaimAsync(managerUser, managerClaim).GetAwaiter().GetResult();
                     }
                 }
             }

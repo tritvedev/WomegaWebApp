@@ -10,8 +10,8 @@ using Shop.Database;
 namespace Shop.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210403232825_StockOnHold")]
-    partial class StockOnHold
+    [Migration("20210404150236_LoginAuthentication")]
+    partial class LoginAuthentication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -333,6 +333,9 @@ namespace Shop.Database.Migrations
 
                     b.Property<int>("Qty")
                         .HasColumnType("int");
+
+                    b.Property<string>("SessionId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StockId")
                         .HasColumnType("int");

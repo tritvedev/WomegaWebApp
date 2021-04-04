@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop.UI.Controllers
 {
+    [Route("[controller]")]
     public class AccountController : Controller
     {
         private SignInManager<IdentityUser> _signInManager;
