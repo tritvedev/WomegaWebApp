@@ -19,7 +19,7 @@ namespace Shop.Application.Products
             {
                 Name = x.Name,
                 Description = x.Description,
-                Value = $"€ {x.Value.ToString("N2")}"      // 1100.53 => 1,100.53 format
+                Value = $"€{x.Value.ToString("N2")}"      // 1100.53 => 1,100.53 format
             });
 
         public class ProductViewModel
