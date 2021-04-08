@@ -20,7 +20,8 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" asp-page="/Index">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                @*<img src="~/images/title.png" width="112" height="28" />*@
+                <img class="image" src="~/images/title.png" height="360" width="120"/>
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -30,7 +31,7 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" class="navbar-menu is-fullheight">
             <div class="navbar-start">
                 @if (User.Identity.IsAuthenticated)
                 {
