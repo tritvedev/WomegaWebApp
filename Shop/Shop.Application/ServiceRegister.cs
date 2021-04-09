@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             @this.AddTransient<CreateUser>();
             @this.AddTransient<GetOrder>();
-            @this.AddTransient<GetOrder>();
+            @this.AddTransient<GetOrders>();
             @this.AddTransient<UpdateOrder>();
 
 
