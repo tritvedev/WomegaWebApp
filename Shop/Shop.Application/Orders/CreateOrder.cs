@@ -20,8 +20,7 @@ namespace Shop.Application.Orders
         public async Task<bool> Do( Request request)
         {
             var stockOnHold = _ctx.StocksOnHold
-                                    .AsEnumerable()
-                                    .Where(x => x.SessionId == request.SessionId).ToList(); // any stock submitted in database is retived
+                                    .Where(x => x.SessionId == request.SessionId).AsEnumerable().ToList(); // any stock submitted in database is retived
 
             _ctx.StocksOnHold.RemoveRange(stockOnHold);
 

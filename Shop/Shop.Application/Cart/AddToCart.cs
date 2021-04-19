@@ -24,7 +24,7 @@ namespace Shop.Application.Cart
         public async Task<bool> Do( Request request)
         {
             var stockOnHold = _ctx.StocksOnHold.AsEnumerable().Where(x => x.SessionId == _session.Id).ToList();
-            var stockToHold = _ctx.Stock.AsEnumerable().Where(x => x.Id == request.StockId).FirstOrDefault();
+            var stockToHold = _ctx.Stock.Where(x => x.Id == request.StockId).FirstOrDefault();
 
             if(stockToHold.Qty < request.Qty)
             {
