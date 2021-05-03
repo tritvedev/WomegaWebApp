@@ -57,7 +57,19 @@ namespace Shop.Application.Cart
                 .FirstOrDefault(x => x.StockId == request.StockId
                                 && x.SessionId == _session.Id );
 
-            stockOnHold.Qty -= request.Qty;
+            var stock = _ctx.Stock.FirstOrDefault(x => x.Id == request.StockId);
+            
+            if (request.All)
+            {
+                stock.Qty += stockOnHold.Qty;
+                stockOnHold.Qty = 0;
+            }
+            else
+            {
+                stock.Qty += request.Qty;
+                stockOnHold.Qty -= request.Qty;
+            }
+
 
             if (stockOnHold.Qty <= 0)
             {
@@ -74,6 +86,7 @@ namespace Shop.Application.Cart
         {
             public int StockId { get; set; }
             public int Qty { get; set; }
+            public bool All { get; set; }
         }
     }
 }

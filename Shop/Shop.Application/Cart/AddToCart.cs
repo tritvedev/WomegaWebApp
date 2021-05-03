@@ -32,13 +32,22 @@ namespace Shop.Application.Cart
                 return false;
             }
 
-            _ctx.StocksOnHold.Add(new StocksOnHold
+            // if item exists in the stockOnHold, then increment it's quantity otherwise add it
+            if(stockOnHold.Any(x => x.StockId == request.StockId)) // if there is any item in the list
             {
-                StockId = stockToHold.Id,
-                SessionId = _session.Id,
-                Qty = request.Qty,
-                ExpiryDate = DateTime.Now.AddMinutes(20)        // hold it for 20 mins
-            });
+                // add to stock on hold
+                stockOnHold.Find(x => x.StockId == request.StockId).Qty += request.Qty;
+            }
+            else
+            {
+                _ctx.StocksOnHold.Add(new StocksOnHold
+                {
+                    StockId = stockToHold.Id,
+                    SessionId = _session.Id,
+                    Qty = request.Qty,
+                    ExpiryDate = DateTime.Now.AddMinutes(20)        // hold it for 20 mins
+                });
+            }
 
             stockToHold.Qty -= request.Qty;
 

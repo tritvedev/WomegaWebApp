@@ -9,7 +9,7 @@
 
             @foreach (var product in Model.Cart)
             {
-                <div class="level">
+                <div class="level" id="product-@product.StockId">
                     <div class="level-item">
                         <figure class="image is-128x128">
                             <img src="~/images/item.jpg" />
@@ -21,8 +21,33 @@
                         </p>
                     </div>
                     <div class="level-item">
-                        <p>@product.Qty</p>
-
+                        <div class="columns is-gapless is-mobile has-text-centered is-multiline">
+                            <div class="column is-4">
+                                <button class="button" type="button" 
+                                        onclick="removeOneFromCart(event)"
+                                        data-stock-id="@product.StockId">
+                                    -
+                                </button>
+                            </div>
+                            <div class="column is-4 is-align-self-center" 
+                                 id="stock-@product.StockId">
+                                @product.Qty
+                            </div>
+                            <div class="column is-4">
+                                <button class="button" type="button"
+                                        onclick="addOneToCart(event)"
+                                        data-stock-id="@product.StockId"
+                                        >
+                                    +
+                                </button>
+                            </div>
+                            <div class="column is-12">
+                                <a class="has-text-danger"
+                                    onclick="removeAllFromCart(event)"
+                                    data-stock-id="@product.StockId"
+                                   >Remove</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="level-item">
                         <p>@product.Value</p>
@@ -40,4 +65,58 @@
 
 </div>
 
-@*<vc:cart view="Small"></vc:cart>*@
+@section scripts {
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var addOneToCart = function (e) {
+            var stockId = e.target.dataset.stockId;
+
+            axios.post('/Cart/AddOne/' + stockId)
+                .then(res => {
+                    var id = "stock-" + stockId;
+                    var el = document.getElementById(id);
+
+                    var qty = parseInt(el.innerText);
+
+                    el.innerText = (qty + 1);
+                })
+                .catch(err => {
+                    alert(err.error);
+                })
+        }
+
+        var removeOneFromCart = function (e) {
+            var stockId = e.target.dataset.stockId;
+
+            axios.post('/Cart/RemoveOne/' + stockId)
+                .then(res => {
+                    var id = "stock-" + stockId;
+                    var el = document.getElementById(id);
+
+                    var qty = parseInt(el.innerText);
+
+                    el.innerText = (qty - 1);
+                })
+                .catch(err => {
+                    alert(err.error);
+                })
+        }
+
+        var removeAllFromCart = function (e) {
+            var stockId = e.target.dataset.stockId;
+
+            axios.post('/Cart/RemoveAll/' + stockId)
+                .then(res => {
+                    var el = document.getElementById("product-" + stockId);
+                    el.outerHTML = "";
+                })
+                .catch(err => {
+                    alert(err.error);
+                })
+        }
+
+
+    </script>
+}
