@@ -9,8 +9,9 @@ namespace Shop.UI.Pages.Shared
 {
     public class _CookieConsentPartialModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Page();
         }
     }
 }
