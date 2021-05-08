@@ -1,7 +1,5 @@
 ﻿using Shop.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Shop.Application.Infrastructure
 {
@@ -9,10 +7,18 @@ namespace Shop.Application.Infrastructure
     {
         //Procedure:  Session Id, Cart Products , save cart products to the session
         string GetId();
-        void AddProduct(CartProduct cartProduct);
+        void AddProduct(int stockId, int qty);
 
         // return
-        List<CartProduct> GetProducts();
+        List<CartProduct> GetCart();
+
+        void AddCustomerInformation(CustomerInformation customer);
+        CustomerInformation GetCustomerInformation();
+
+        void RemoveProduct(int stockId, int qty);
+
 
     }
+
+
 }

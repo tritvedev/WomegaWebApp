@@ -11,18 +11,11 @@ namespace Shop.UI.Pages
 {
     public class CartModel : PageModel
     {
-        private ApplicationDbContext _ctx;
-
         public IEnumerable<GetCart.Response> Cart { get; set; }
 
-        public CartModel(ApplicationDbContext ctx)
+        public IActionResult OnGet([FromServices] GetCart getCart)
         {
-            _ctx = ctx;
-        }
-
-        public IActionResult OnGet()
-        {
-            Cart = new GetCart(HttpContext.Session, _ctx).Do();
+            Cart = getCart.Do();
 
             return Page();
         }

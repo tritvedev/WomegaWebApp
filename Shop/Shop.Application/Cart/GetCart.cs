@@ -1,37 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Application.Infrastructure;
 using Shop.Database;
-using Shop.Domain.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Shop.Application.Cart
 {
     public class GetCart
     {
-        private ISession _session;
+        private ISessionManager _sessionManager;
         private ApplicationDbContext _ctx;
 
-        public GetCart(ISession session, ApplicationDbContext ctx)
+        public GetCart(ISessionManager sessionManager, ApplicationDbContext ctx)
         {
-            _session = session;
+            _sessionManager = sessionManager;
             _ctx = ctx;
         }
 
         public IEnumerable<Response> Do()
         {
-            // TODO: account for multiple items in the cart
+            // account for multiple items in the cart
+            var cartList = _sessionManager.GetCart();
 
-
-            var stringObject = _session.GetString("cart");
-            if (string.IsNullOrEmpty(stringObject))
+            if(cartList == null)
             {
                 return new List<Response>();
             }
-            var cartList = JsonConvert.DeserializeObject<List<CartProduct>>(stringObject);
 
             var response = _ctx.Stock
                 .Include(x => x.Product).AsEnumerable() 

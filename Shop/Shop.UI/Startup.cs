@@ -7,8 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shop.Application.UsersAdmin;
+using Shop.Application.Infrastructure;
 using Shop.Database;
+using Shop.UI.Infrastructure;
 using Stripe;
 using System;
 
@@ -27,6 +28,8 @@ namespace Shop.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddHttpContextAccessor();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -76,6 +79,8 @@ namespace Shop.UI
                 options.Cookie.Name = "Cart";
                 options.Cookie.MaxAge = TimeSpan.FromMinutes(20);
             });
+
+            services.AddTransient<ISessionManager, SessionManager>();
 
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
 
