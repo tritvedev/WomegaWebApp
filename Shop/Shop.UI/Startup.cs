@@ -76,6 +76,7 @@ namespace Shop.UI
 
             services.AddSession( options => 
             {
+                options.Cookie.IsEssential = true;
                 options.Cookie.Name = "Cart";
                 options.Cookie.MaxAge = TimeSpan.FromMinutes(20);
             });
