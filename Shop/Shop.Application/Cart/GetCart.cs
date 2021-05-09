@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop.Application.Infrastructure;
 using Shop.Database;
+using Shop.Domain.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,39 +9,26 @@ namespace Shop.Application.Cart
     public class GetCart
     {
         private ISessionManager _sessionManager;
-        private ApplicationDbContext _ctx;
 
-        public GetCart(ISessionManager sessionManager, ApplicationDbContext ctx)
+        public GetCart(ISessionManager sessionManager)
         {
             _sessionManager = sessionManager;
-            _ctx = ctx;
         }
 
+        // Getting the cart from the database
         public IEnumerable<Response> Do()
         {
             // account for multiple items in the cart
-            var cartList = _sessionManager.GetCart();
-
-            if(cartList == null)
-            {
-                return new List<Response>();
-            }
-
-            var response = _ctx.Stock
-                .Include(x => x.Product).AsEnumerable() 
-                .Where(x => cartList.Any(y => y.StockId == x.Id))
-                .Select(x => new Response
+            return _sessionManager
+                .GetCart(x => new Response
                 {
-                    Name = x.Product.Name,
-                    Value = $"€ {x.Product.Value.ToString("N2")}",
-                    RealValue = x.Product.Value ,
-                    StockId = x.Id,
-                    Qty = cartList.FirstOrDefault(y => y.StockId == x.Id).Qty
+                    Name = x.ProductName,
+                    Value = x.Value.GetValueString(),
+                    RealValue = x.Value,
+                    StockId = x.StockId,
+                    Qty = x.Qty
 
-                })
-                .ToList();
-
-            return response;
+                });
 
         }
 

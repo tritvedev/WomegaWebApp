@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Shop.Application.Infrastructure;
+using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
