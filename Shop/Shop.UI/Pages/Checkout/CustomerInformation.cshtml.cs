@@ -24,7 +24,8 @@ namespace Shop.UI.Pages.Checkout
         public AddCustomerInformation.Request CustomerInformation { get; set; }
 
         [Obsolete]
-        public IActionResult OnGet([FromServices] GetCustomerInformation getCustomerInformation)
+        public IActionResult OnGet(
+            [FromServices] GetCustomerInformation getCustomerInformation)
         {
             // Get Customer Information
             var information = getCustomerInformation.Do();
@@ -55,7 +56,8 @@ namespace Shop.UI.Pages.Checkout
             }
         }
 
-        public IActionResult OnPost([FromServices] AddCustomerInformation addCustomerInformation)
+        public IActionResult OnPost(
+            [FromServices] AddCustomerInformation addCustomerInformation)
         {
             if (!ModelState.IsValid)
             {

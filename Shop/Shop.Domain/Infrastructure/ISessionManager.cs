@@ -12,7 +12,7 @@ namespace Shop.Domain.Infrastructure
 
         // return
         IEnumerable<TResult> GetCart<TResult>(Func<CartProduct, TResult> selector);
-
+        void ClearCart();
         void AddCustomerInformation(CustomerInformation customer);
         CustomerInformation GetCustomerInformation();
 

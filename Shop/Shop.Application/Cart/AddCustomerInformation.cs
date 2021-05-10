@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using Shop.Domain.Infrastructure;
+﻿using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shop.Application.Cart
 {
+    [Service]
     public class AddCustomerInformation
     {
         private ISessionManager _sessionManager;

@@ -27,17 +27,15 @@ namespace Shop.UI.Pages
 
 
 
-        public async Task<IActionResult> OnGet(string name)
+        public async Task<IActionResult> OnGet(
+            string name,
+            [FromServices] GetProduct getProduct)
         {
-            Product = await new GetProduct(_ctx).Do(name.Replace("-"," "));
-            if(Product == null)
-            {
+            Product = await getProduct.Do(name.Replace("-", " "));
+            if (Product == null)
                 return RedirectToPage("Index");
-            }
             else
-            {
                 return Page();
-            }
         }
 
         public async Task<IActionResult> OnPost(

@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Shop.Application.Cart
 {
+    [Service]
     public class GetCart
     {
         private ISessionManager _sessionManager;

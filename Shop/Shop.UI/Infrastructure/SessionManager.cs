@@ -74,6 +74,11 @@ namespace Shop.UI.Infrastructure
             return customerInformation;
         }
 
+        public void ClearCart()
+        {
+            _session.Remove("cart");
+        }
+
         public string GetId() => _session.Id;
 
         public void RemoveProduct(int stockId, int qty)

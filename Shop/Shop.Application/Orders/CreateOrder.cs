@@ -1,4 +1,6 @@
 ﻿using Shop.Database;
+using Shop.Domain.Cart;
+using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -8,26 +10,29 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Orders
 {
+    [Service]
     public class CreateOrder
     {
-        private ApplicationDbContext _ctx;
+        private IOrderManager _orderManager;
+        private IStockManager _stockManager;
 
-        public CreateOrder(ApplicationDbContext ctx)
+        public CreateOrder(IOrderManager orderManager, IStockManager stockManager)
         {
-            _ctx = ctx;
+            _orderManager = orderManager;
+            _stockManager = stockManager;
         }
 
         public async Task<bool> Do( Request request)
         {
-            var stockOnHold = _ctx.StocksOnHold
-                                    .Where(x => x.SessionId == request.SessionId).AsEnumerable().ToList(); // any stock submitted in database is retived
+            //var stockOnHold = _ctx.StocksOnHold
+            //                        .Where(x => x.SessionId == request.SessionId).AsEnumerable().ToList(); // any stock submitted in database is retived
 
-            _ctx.StocksOnHold.RemoveRange(stockOnHold);
+            //_ctx.StocksOnHold.RemoveRange(stockOnHold);
 
             var order = new Order
             {
-                StripeReference = request.StripReference,
                 OrderRef = CreateOrderReference(),
+                StripeReference = request.StripeReference,
 
                 FirstName = request.FirstName,
                 LastName = request.LastName,
@@ -47,8 +52,16 @@ namespace Shop.Application.Orders
 
             };
 
-            _ctx.Orders.Add(order);
-            return await _ctx.SaveChangesAsync() > 0;
+            var success = await _orderManager.CreateOrder(order) > 0;
+
+            if (success)
+            {
+                await _stockManager.RemoveStockFromHold(request.SessionId);
+
+                return true;
+            }
+
+            return false;
 
         }
 
@@ -60,20 +73,16 @@ namespace Shop.Application.Orders
 
             do
             {
-               for (int i = 0; i < result.Length; i++)
-                {
+                for (int i = 0; i < result.Length; i++)
                     result[i] = chars[random.Next(chars.Length)];
-                }
-            }
-            while (_ctx.Orders.Any(x => x.OrderRef == new string(result)));
-
+            } while (_orderManager.OrderReferenceExists(new string(result)));
 
             return new string(result);
         }
 
         public class Request
         {
-            public string StripReference { get; set; }
+            public string StripeReference { get; set; }
             public string SessionId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }

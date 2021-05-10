@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Database;
+using Shop.Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,14 @@ using System.Text;
 
 namespace Shop.Application.OrdersAdmin
 {
+    [Service]
     public class GetOrder
     {
-        private ApplicationDbContext _ctx;
+        private IOrderManager _orderManager;
 
-        public GetOrder(ApplicationDbContext ctx )
+        public GetOrder(IOrderManager orderManager)
         {
-            _ctx = ctx;
+            _orderManager = orderManager;
         }
 
         public class Response
@@ -44,33 +46,28 @@ namespace Shop.Application.OrdersAdmin
         }
 
         public Response Do(int id) =>
-            _ctx.Orders
-                .Where(x => x.Id == id)
-                .Include(x => x.OrderStocks)
-                .ThenInclude(x => x.Stock)
-                .ThenInclude(x => x.Product)
-                .Select(x => new Response
+            _orderManager.GetOrderById(id, x => new Response
+            {
+                Id = x.Id,
+                OrderRef = x.OrderRef,
+                StripeReference = x.StripeReference,
+
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Email = x.Email,
+                PhoneNumber = x.PhoneNumber,
+                Address1 = x.Address1,
+                Address2 = x.Address2,
+                City = x.City,
+                PostCode = x.PostCode,
+
+                Products = x.OrderStocks.Select(y => new Product
                 {
-                    Id = x.Id,
-                    OrderRef = x.OrderRef,
-                    StripeReference = x.StripeReference,
-
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    Email = x.Email,
-                    PhoneNumber = x.PhoneNumber,
-                    Address1 = x.Address1,
-                    Address2 = x.Address2,
-                    City = x.City,
-                    PostCode = x.PostCode,
-
-                    Products = x.OrderStocks.Select(y => new Product {
-                        Name = y.Stock.Product.Name,
-                        Description = y.Stock.Product.Description,
-                        Qty = y.Qty,
-                        StockDescription = y.Stock.Description,
-                    })
-
-                }).FirstOrDefault();
+                    Name = y.Stock.Product.Name,
+                    Description = y.Stock.Product.Description,
+                    Qty = y.Qty,
+                    StockDescription = y.Stock.Description,
+                }),
+            });
     }
 }

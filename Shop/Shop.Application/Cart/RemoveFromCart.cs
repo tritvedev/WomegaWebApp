@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Cart
 {
+    [Service]
     public class RemoveFromCart
     {
         private ISessionManager _sessionManager;
