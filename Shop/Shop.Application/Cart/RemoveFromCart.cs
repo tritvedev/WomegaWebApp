@@ -1,7 +1,5 @@
-﻿using Shop.Database;
-using Shop.Domain.Cart;
+﻿using Shop.Domain.Cart;
 using Shop.Domain.Infrastructure;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Cart

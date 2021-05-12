@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Shop.Database
 {

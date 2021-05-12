@@ -1,9 +1,4 @@
-﻿using Shop.Database;
-using Shop.Domain.Cart;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Shop.Domain.Cart;
 using System.Threading.Tasks;
 
 namespace Shop.Application.StockAdmin

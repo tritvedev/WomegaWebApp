@@ -1,10 +1,4 @@
-﻿using Shop.Database;
-using Shop.Domain.Infrastructure;
-using Shop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Shop.Domain.Infrastructure;
 using System.Threading.Tasks;
 
 namespace Shop.Application.ProductsAdmin

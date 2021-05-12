@@ -1,5 +1,4 @@
-﻿using Shop.Database;
-using Shop.Domain.Cart;
+﻿using Shop.Domain.Cart;
 using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
 using System.Threading.Tasks;
