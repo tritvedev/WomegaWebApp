@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +14,7 @@ using Shop.Database.Cart;
 using Shop.Domain.Cart;
 using Shop.Domain.Infrastructure;
 using Shop.UI.Infrastructure;
+using Shop.UI.ValidationContext;
 using Stripe;
 using System;
 
@@ -69,11 +72,12 @@ namespace Shop.UI
 
             services
                 .AddMvc()
-                .AddRazorPagesOptions( options =>
-                {
-                    options.Conventions.AuthorizeFolder("/Admin");
-                    options.Conventions.AuthorizePage("/Admin/ConfigureUsers", "Admin");
-                })
+                .AddRazorPagesOptions(options =>
+               {
+                   options.Conventions.AuthorizeFolder("/Admin");
+                   options.Conventions.AuthorizePage("/Admin/ConfigureUsers", "Admin");
+               })
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(typeof(Startup).Assembly))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSession( options => 
