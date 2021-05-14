@@ -13,7 +13,6 @@ namespace Shop.UI.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
 
-
         public UsersController(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;

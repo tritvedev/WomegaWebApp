@@ -18,7 +18,7 @@
                         <p class="subtitle">@Model.Product.Description</p>
 
                         <p>
-                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
                         </p>
 
                         <footer>
@@ -76,7 +76,16 @@
                                     <div class="field-body">
                                         <div class="field is-narrow">
                                             <div class="control">
-                                                <button class="button is-success" type="submit">Submit</button>
+                                                @{
+                                                    int totalQuantity = 0;
+                                                    @foreach (var s in Model.Product.Stock)
+                                                    {
+                                                        bool disabled = s.Qty <= 0;
+                                                        totalQuantity += s.Qty;
+                                                    }
+                                                    bool quantityAvailable = totalQuantity <= 0;
+                                                    <button class="button is-success" disabled="@quantityAvailable" type="submit">Submit</button>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -106,7 +115,7 @@
     }
 
     var showLowStock = function (id) {
-        
+
 
         var stockToShow = document.getElementById('low-stock-' + id);
 
