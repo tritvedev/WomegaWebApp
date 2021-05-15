@@ -1,0 +1,34 @@
+﻿@page
+@model Shop.UI.Pages.Accounts.SignUpModel
+@{
+}
+
+<div id="app" class="container">
+    <div>
+        <label>First Name</label>
+        <input v-model="userModel.firstName" />
+    </div>
+    <div>
+        <label>First Name</label>
+        <input v-model="userModel.lastName" />
+    </div>
+    <div>
+        <label>User Name</label>
+        <input v-model="userModel.userName" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input v-model="userModel.email" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" v-model="userModel.password" />
+    </div>
+    <div>
+        <button @@click="createUser">Sign Up</button>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/admin/users.js"></script>
+}

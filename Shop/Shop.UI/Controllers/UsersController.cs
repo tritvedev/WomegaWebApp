@@ -1,40 +1,23 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Shop.UI.ViewModel.Admin;
-using System.Security.Claims;
+using Shop.Application.Users;
+using Shop.UI.Pages.Accounts;
 using System.Threading.Tasks;
 
 namespace Shop.UI.Controllers
 {
     [Route("{controller}")]
-    [Authorize(Policy = "Admin")]
     public class UsersController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        /*
+         * 
+         *          Users Controller
+         * 
+         */
 
-
-        public UsersController(UserManager<IdentityUser> userManager)
-        {
-            _userManager = userManager;
-        }
-
-        public async Task<IActionResult> CreateUser(
-            [FromBody] CreateUserViewModel vm)
-        {
-            var managerUser = new IdentityUser()
-            {
-                UserName = vm.Username
-            };
-
-            await _userManager.CreateAsync(managerUser, "password");
-
-            var managerClaim = new Claim("Role", "Manager");
-
-            await _userManager.AddClaimAsync(managerUser, managerClaim);
-
-            return Ok();
-        }
+        [HttpPost("")]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUser.Request request, [FromServices] CreateUser createuser) =>
+            Ok((await createuser.Do(request)));
 
     }
 }

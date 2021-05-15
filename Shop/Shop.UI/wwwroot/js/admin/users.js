@@ -1,15 +1,20 @@
 ﻿var app = new Vue({
     el: '#app',
     data: {
-        username: ""
+        userModel: {
+            firstName: "",
+            lastName: "",
+            userName: "",
+            password: "",
+            email: ""
+        }
     },
     mounted() {
         // Todo: get all the users 
     },
     methods: {
         createUser() {
-            this.loading = true;
-            axios.post('/users', { username: this.username })
+            axios.post('/users', this.userModel)
                 .then(res => {
                     console.log(res);
                 })
@@ -17,5 +22,8 @@
                     console.log(err);
                 });
         }
+    },
+    computed: {
+        //Todo: confirm password implementation
     }
 })

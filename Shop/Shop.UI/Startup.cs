@@ -13,6 +13,7 @@ using Shop.Database;
 using Shop.Database.Cart;
 using Shop.Domain.Cart;
 using Shop.Domain.Infrastructure;
+using Shop.Domain.Models;
 using Shop.UI.Infrastructure;
 using Shop.UI.ValidationContext;
 using Stripe;
@@ -44,7 +45,7 @@ namespace Shop.UI
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 6;

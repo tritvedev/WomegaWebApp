@@ -9,9 +9,7 @@ namespace Shop.UI.Controllers
     public class CartController : Controller
     {
         [HttpPost("{stockId}")]
-        public async Task<IActionResult> AddOne(
-            int stockId,
-            [FromServices] AddToCart addToCart)
+        public async Task<IActionResult> AddOne(int stockId, [FromServices] AddToCart addToCart)
         {
             var request = new AddToCart.Request
             {
@@ -31,10 +29,7 @@ namespace Shop.UI.Controllers
         }
 
         [HttpPost("{stockId}/{qty}")]
-        public async Task<IActionResult> Remove(
-            int stockId,
-            int qty,
-            [FromServices] RemoveFromCart removeFromCart )
+        public async Task<IActionResult> Remove(int stockId, int qty, [FromServices] RemoveFromCart removeFromCart)
         {
             var request = new RemoveFromCart.Request
             {

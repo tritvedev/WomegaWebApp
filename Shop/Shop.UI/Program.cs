@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Shop.Database;
+using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,29 +26,34 @@ namespace Shop.UI
                 using (var scope = host.Services.CreateScope())
                 {
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
                     context.Database.EnsureCreated();
 
-                    if (!context.Users.Any())
+                    if (!context.Users.Any(x => x.UserName == "admin"))
                     {
-                        var adminUser = new IdentityUser()
+                        var adminUser = new User()
                         {
                             UserName = "admin"
                         };
 
-                        var managerUser = new IdentityUser()
+                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
+
+                        var adminClaim = new Claim("Role", "Admin");
+
+                        userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
+                    }
+                    if (!context.Users.Any(x => x.UserName == "manager"))
+                    {
+                        var managerUser = new User()
                         {
                             UserName = "manager"
                         };
 
-                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
                         userManager.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
 
-                        var adminClaim = new Claim("Role", "Admin");
                         var managerClaim = new Claim("Role", "Manager");
 
-                        userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
                         userManager.AddClaimAsync(managerUser, managerClaim).GetAwaiter().GetResult();
                     }
                 }
