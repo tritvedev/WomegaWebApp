@@ -73,7 +73,7 @@
             switch (prop) {
                 case "firstName":
                     var reg = null;
-                    if (this.userModel.email != "" ) {
+                    if (this.userModel.firstName != "") {
                         this.msg['firstName'] = '';
                     } else {
                         this.msg['firstName'] = 'First Name cannot be empty';
@@ -82,7 +82,7 @@
 
                 case "lastName":
                     var reg = null;
-                    if (this.userModel.email != "") {
+                    if (this.userModel.lastName != "") {
                         this.msg['lastName'] = '';
                     } else {
                         this.msg['lastName'] = 'Last Name cannot be empty';
@@ -91,7 +91,7 @@
 
                 case "userName":
                     var reg = null;
-                    if (this.userModel.email != "") {
+                    if (this.userModel.userName != "") {
                         this.msg['userName'] = '';
                     } else {
                         this.msg['userName'] = 'User Name cannot be empty';
@@ -100,7 +100,7 @@
 
                 case "gst":
                     var reg = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
-                    if (this.userModel.email != "") {
+                    if (this.userModel.gstNumber != "") {
                         if (!reg.test(this.userModel.gstNumber)) {
                             this.msg['gst'] = 'Invalid Gst Number';
                         } else {
@@ -126,7 +126,7 @@
 
                 case "password":
                     var reg = null;
-                    if (this.userModel.email != "") {
+                    if (this.userModel.password != "") {
                         this.msg['password'] = '';
                     } else {
                         this.msg['password'] = 'Password cannot be empty';
