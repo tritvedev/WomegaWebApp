@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Domain.Models;
 using System.Threading.Tasks;
 
 namespace Shop.UI.Controllers
@@ -7,9 +8,9 @@ namespace Shop.UI.Controllers
     [Route("[controller]")]
     public class AccountController : Controller
     {
-        private SignInManager<IdentityUser> _signInManager;
+        private SignInManager<User> _signInManager;
 
-        public AccountController(SignInManager<IdentityUser> signInManager)
+        public AccountController(SignInManager<User> signInManager)
         {
             _signInManager = signInManager;
         }
