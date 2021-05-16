@@ -1,8 +1,10 @@
-﻿using Shop.Application;
+﻿using Microsoft.AspNetCore.Identity;
+using Shop.Application;
 using Shop.Database;
 using Shop.Database.Cart;
 using Shop.Domain.Cart;
 using Shop.Domain.Infrastructure;
+using Shop.Domain.Models;
 using Shop.UI.Infrastructure;
 using System.Linq;
 using System.Reflection;
@@ -29,6 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
             @this.AddTransient<IProductManager, ProductManager>();
             @this.AddTransient<IOrderManager, OrderManager>();
             @this.AddScoped<ISessionManager, SessionManager>();
+            @this.AddTransient<UserManager<User>>();
 
             return @this;
         }

@@ -28,21 +28,15 @@ namespace Shop.UI.Controllers
             Ok(getStock.Do());
 
         [HttpPost("")]
-        public async Task<IActionResult> CreateStock(
-            [FromBody] CreateStock.Request request,
-            [FromServices] CreateStock createStock) =>
+        public async Task<IActionResult> CreateStock([FromBody] CreateStock.Request request, [FromServices] CreateStock createStock) =>
             Ok((await createStock.Do(request)));
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStock(
-            int id,
-            [FromServices] DeleteStock deleteStock) =>
+        public async Task<IActionResult> DeleteStock(int id, [FromServices] DeleteStock deleteStock) =>
             Ok((await deleteStock.Do(id)));
 
         [HttpPut("")]
-        public async Task<IActionResult> UpdateStock(
-            [FromBody] UpdateStock.Request request,
-            [FromServices] UpdateStock updateStock) =>
+        public async Task<IActionResult> UpdateStock([FromBody] UpdateStock.Request request, [FromServices] UpdateStock updateStock) =>
             Ok((await updateStock.Do(request)));
 
     }
