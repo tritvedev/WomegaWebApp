@@ -7,11 +7,11 @@ namespace Shop.Application.Users
     [Service]
     public class CreateUser
     {
-        private UserManager<User> _accountManager;
+        private UserManager<User> _userManager;
 
-        public CreateUser(UserManager<User> accountManager)
+        public CreateUser(UserManager<User> userManager)
         {
-            _accountManager = accountManager;
+            _userManager = userManager;
         }
 
         public async Task<Response> Do(Request request)
@@ -24,7 +24,7 @@ namespace Shop.Application.Users
                 Email = request.Email
             };
 
-            _accountManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
+            _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
 
             return new Response
             {
@@ -42,6 +42,7 @@ namespace Shop.Application.Users
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string UserName { get; set; }
+            public string GstNumber { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
         }
@@ -52,6 +53,7 @@ namespace Shop.Application.Users
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string UserName { get; set; }
+            public string GstNumber { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
         }

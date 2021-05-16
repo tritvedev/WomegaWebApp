@@ -7,25 +7,35 @@
     <div>
         <label>First Name</label>
         <input v-model="userModel.firstName" />
+        <span v-if="msg.gst">{{msg.firstName}}</span>
     </div>
     <div>
-        <label>First Name</label>
+        <label>Last Name</label>
         <input v-model="userModel.lastName" />
+        <span v-if="msg.gst">{{msg.lastName}}</span>
     </div>
     <div>
         <label>User Name</label>
         <input v-model="userModel.userName" />
+        <span v-if="msg.gst">{{msg.userName}}</span>
+    </div>
+    <div>
+        <label>Gst Number</label>
+        <input id="gst" v-model="userModel.gstNumber" />
+        <span v-if="msg.gst">{{msg.gst}}</span>
     </div>
     <div>
         <label>Email</label>
-        <input v-model="userModel.email" />
+        <input v-model="userModel.email" required>
+        <span v-if="msg.email">{{msg.email}}</span>
     </div>
     <div>
         <label>Password</label>
         <input type="password" v-model="userModel.password" />
+        <span v-if="msg.gst">{{msg.password}}</span>
     </div>
     <div>
-        <button @@click="createUser">Sign Up</button>
+        <button :disabled='isDisabled' @@click="createUser">Sign Up</button>
     </div>
 </div>
 
