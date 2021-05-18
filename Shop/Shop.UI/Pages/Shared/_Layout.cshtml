@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IAuthorizationService authService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,7 +35,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu is-fullheight">
             <div class="navbar-start">
-                @if (User.Identity.IsAuthenticated)
+                @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
                 {
                     <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
                         Admin

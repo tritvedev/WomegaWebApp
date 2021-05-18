@@ -37,10 +37,8 @@ namespace Shop.UI
                             UserName = "admin"
                         };
 
-                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
-
                         var adminClaim = new Claim("Role", "Admin");
-
+                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
                         userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
                     }
                     if (!context.Users.Any(x => x.UserName == "manager"))
@@ -50,10 +48,8 @@ namespace Shop.UI
                             UserName = "manager"
                         };
 
-                        userManager.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
-
                         var managerClaim = new Claim("Role", "Manager");
-
+                        userManager.CreateAsync(managerUser, "password").GetAwaiter().GetResult();
                         userManager.AddClaimAsync(managerUser, managerClaim).GetAwaiter().GetResult();
                     }
                 }
