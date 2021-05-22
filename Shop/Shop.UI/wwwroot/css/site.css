@@ -1,4 +1,4 @@
-﻿.StripeElement{
+﻿.StripeElement {
     background-color: white;
     height: 40px;
     padding: 10px 20px;
@@ -13,10 +13,55 @@
     box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
-.StripeElement--invalid{
+.StripeElement--invalid {
     border-color: #fa755a;
 }
 
 .StripeElement--webkit-autofill {
     border-color: #fefde5 !important;
+}
+
+.navbar-item {
+    padding-right: 40px !important;
+    font-size: large !important;
+}
+
+    .navbar-item:hover {
+        background-color: white !important;
+        color: black !important;
+    }
+
+
+.login-button-signin {
+    background-color: #04aa6d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+    .login-button-signin:hover {
+        opacity: 0.8;
+    }
+
+.input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.cancel-button {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.passwore-field {
+    float: right;
+    padding-top: 16px;
 }

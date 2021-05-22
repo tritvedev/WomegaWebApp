@@ -5,8 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Shop.UI</title>
+    <title>@ViewData["Title"] Admin Panel</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    @*<link rel="stylesheet" type="text/css" href="../css/admin.css">*@
+    <link href="~/css/Admin_CSS.css" rel="stylesheet" />
     <environment include="Development">
         <link href="~/lib/bulma/css/bulma.css" rel="stylesheet" />
     </environment>
@@ -17,44 +22,108 @@
 
 </head>
 <body>
-    <header>
-        <h3 class="title has-text-centered">Admin Panel</h3>
+
+
+
+    <!-- START NAV -->
+    <nav class="navbar is-white">
         <div class="container">
-            <div class="columns">
-                <div class="column is-3">
-                    <div class="menu">
-                        @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
-                        {
-                            <p class="menu-label"> Store Menu </p>
-                            <ul class="menu-list">
-                                <li> <a asp-page="/Admin/Index">Products</a> </li>
-                                <li> <a asp-page="/Admin/Orders">Orders</a> </li>
-                                <li> <a asp-page="/Admin/Stock">Stock</a> </li>
-                            </ul>
-                        }
-
-                        @if ((await authService.AuthorizeAsync(User, "Admin")).Succeeded)
-                        {
-                            <p class="menu-label"> Admin Menu </p>
-                            <ul class="menu-list">
-                                <li> <a asp-page="/Admin/ConfigureUsers">Configure Users</a> </li>
-                            </ul>
-                        }
-                        <p class="menu-label"></p>
-                        <ul class="menu-list">
-                            <li> <a class="nav-link text-dark" asp-area="" asp-page="/Index">Back to Home</a> </li>
-                        </ul>
-
-                    </div>
-                </div>
-
-                <div class="column is-9">
-                    @RenderBody()
+            <div class="navbar-brand">
+                <a class="navbar-item brand-text" href="#">
+                    Admin Panel
+                </a>
+                <div class="navbar-burger burger" data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-        </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="#">
+                        Home
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Orders
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Payments
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Exceptions
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Reports
+                    </a>
+                </div>
 
-    </header>
+            </div>
+        </div>
+    </nav>
+
+    <!-- END NAV -->
+    <div class="container">
+        <div class="columns" style=" width: 100%; height: 100%; margin-left: 0;">
+            <div class="column is-3 ">
+
+                <aside class="menu is-hidden-mobile">
+                    @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
+                    {
+                        <p class="menu-label">
+                            STORE MENU
+                        </p>
+                        <ul class="menu-list">
+                            <li><a class="is-active" asp-page="/Admin/Index">Products</a></li>
+                            <li><a asp-page="/Admin/Orders">Orders</a></li>
+                            <li><a asp-page="/Admin/Stock">Stock</a></li>
+                        </ul>
+                    }
+                    <p class="menu-label">
+                        ADMIN MENU
+                    </p>
+                    <ul class="menu-list">
+                        @if ((await authService.AuthorizeAsync(User, "Admin")).Succeeded)
+                        {
+                            <li><a>Configure Users</a></li>
+                        }
+                        <li>
+                            <a asp-page="/Index">Back to Home</a>
+                            @*<ul>
+                                    <li><a>Members</a></li>
+                                    <li><a>Plugins</a></li>
+                                    <li><a>Add a member</a></li>
+                                    <li><a>Remove a member</a></li>
+                                </ul>*@
+                        </li>
+                    </ul>
+                </aside>
+
+            </div>
+            <div class="column is-9">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="../">Admin Panel</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">Products</a></li>
+                    </ul>
+                </nav>
+
+                <div>
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ----------- -->
+
+
+
+
+
+
+
 
     <footer class="footer">
         <div class="content has-text-centered">
@@ -67,6 +136,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @*<script async type="text/javascript" src="../js/bulma.js"></script>*@
 
     @RenderSection("Scripts", required: false)
 </body>
