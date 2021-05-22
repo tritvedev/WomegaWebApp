@@ -100,8 +100,14 @@ nav.navbar {
     overflow-y: scroll;
 }
 
-button.new-product-button-color {
-    background-color: #d69647 !important;
+button.admin-panel-button {
+    background-color: #ffdb4a !important;
+}
+
+.button-center {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
 }
 
 .container-admin-panel {
