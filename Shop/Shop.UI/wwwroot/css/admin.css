@@ -44,7 +44,7 @@ nav.navbar {
     }
 
     .menu-list a.is-active {
-        background-color: transparent;
+        background-color: #d69647 !important;
         color: #276cda;
         font-weight: 700;
     }
@@ -69,9 +69,9 @@ nav.navbar {
     }
 
 .hero.welcome.is-info {
-    background: #36D1DC;
-    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
-    background: linear-gradient(to right, #5B86E5, #36D1DC);
+    background: #d1d647;
+    background: -webkit-linear-gradient(to right, #d69647, #d1d647);
+    background: linear-gradient(to right, #d69647, #d1d647);
 }
 
 .hero.welcome .title, .hero.welcome .subtitle {
@@ -100,8 +100,10 @@ nav.navbar {
     overflow-y: scroll;
 }
 
-.new-product-button {
-    align-content:center;
-    align-items:center;
+button.new-product-button-color {
+    background-color: #d69647 !important;
 }
 
+.container-admin-panel {
+    padding-bottom:3%;
+}
