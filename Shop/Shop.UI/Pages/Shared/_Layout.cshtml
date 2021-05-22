@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+@inject IAuthorizationService authService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +19,7 @@
 </head>
 <body>
     <div id="navbar-container">
-        <nav class="navbar container" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" asp-page="/Index">
                     @*<img src="~/images/title.png" width="112" height="28" />*@
@@ -31,9 +33,10 @@
                 </a>
             </div>
 
+
             <div id="navbarBasicExample" class="navbar-menu is-fullheight">
                 <div class="navbar-start">
-                    @if (User.Identity.IsAuthenticated)
+                    @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
                     {
                         <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
                             Admin

@@ -53,19 +53,18 @@ namespace Shop.UI
 
             }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.ConfigureApplicationCookie( options => 
-            {
-                options.LoginPath = "/Accounts/Login";
-            });
+            services.ConfigureApplicationCookie(options =>
+           {
+               options.LoginPath = "/Accounts/Login";
+           });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireClaim("Role", "Admin"));
-                //options.AddPolicy("Manager", policy => policy.RequireClaim("Role", "Manager"));
-                options.AddPolicy("Manager", policy => policy
-                            .RequireAssertion(context => 
-                            context.User.HasClaim("Role", "Manager")
-                            || context.User.HasClaim("Role", "Admin")));
+                options.AddPolicy("Manager", policy => policy.RequireAssertion(
+                    context => context.User.HasClaim("Role", "Manager") || context.User.HasClaim("Role", "Admin")));
+                options.AddPolicy("User", policy => policy.RequireAssertion(
+                    context => context.User.HasClaim("Role", "Manager") || context.User.HasClaim("Role", "Admin") || context.User.HasClaim("Role", "User")));
             });
 
             services.AddControllersWithViews();
@@ -74,17 +73,17 @@ namespace Shop.UI
                 .AddMvc()
                 .AddRazorPagesOptions(options =>
                {
-                   options.Conventions.AuthorizeFolder("/Admin");
+                   options.Conventions.AuthorizeFolder("/Admin", "Manager");
                    options.Conventions.AuthorizePage("/Admin/ConfigureUsers", "Admin");
                })
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssembly(typeof(Startup).Assembly))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            services.AddSession( options => 
-            {
-                options.Cookie.Name = "Cart";
-                options.Cookie.MaxAge = TimeSpan.FromMinutes(20);
-            });
+            services.AddSession(options =>
+           {
+               options.Cookie.Name = "Cart";
+               options.Cookie.MaxAge = TimeSpan.FromMinutes(20);
+           });
 
 
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
@@ -118,7 +117,7 @@ namespace Shop.UI
             app.UseAuthentication();
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
