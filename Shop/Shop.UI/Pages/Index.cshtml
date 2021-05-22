@@ -4,60 +4,120 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="section">
-    <div class="columns is-multiline is-mobile">
-        @{
-            foreach (var p in Model.Products)
-            {
-                <div class="column is-3-desktop is-4-tablet is-6-mobile">
-                    <a asp-page="Product" asp-route-name="@p.Name.Replace(" ", "-")">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 is-relative">
-                                    <img src="~/images/item.jpg" />
-                                </figure>
-                            </div>
-                            
+<section class="" style="
+        height: 500px;
+        width: 100%;
+        overflow: hidden;
+        background-position: center; justify-content:center;
+">
+    <figure class="image">
+        @*style="align-content: center; justify-content: center;"*@
+        <div>
+            <img src="~/images/mainPageImage.jpg" />
+            @*<img class="image" src="~/images/mainPageImage.jpg">*@
+        </div>
 
-                            <div class="card-content">
-                                @{
-                                    string cssClass = "";
-                                    string message = "";
+    </figure>
+</section>
 
-                                    if (p.StockCount == 0)
-                                    {
-                                        cssClass = "is-danger";
-                                        message = "Out of Stock";
-                                    }
-                                    else if (p.StockCount <= 10)
-                                    {
-                                        cssClass = "is-warning";
-                                        message = "Low on Stock";
-                                    }
-                                }
 
-                                @if (p.StockCount <= 10)
-                                {
-                                    <div class="notification is-paddingless has-text-centered @cssClass">
-                                        @message
+<section class="section">
+    <div class="has-text-left">
+        <h2 class="title">This is your space</h2>
+        <h4 class="title is-4" style="color: #757575">Talk about your business, your products, or yourself</h4>
+        <hr>
+        <div class="columns">
+            <div class="column">
+
+                <p style="color: #a2a2a2">
+                    We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+            </div>
+
+            <div class="column">
+
+                <p style="color: #a2a2a2">
+                    We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="section">
+
+
+            <div class="container has-text-centered">
+                <h2 class="title">Our Favourits</h2>
+                <h4 class="title is-4">Check out new and popular products</h4>
+
+                <div class="columns is-multiline is-mobile">
+
+                    @{
+                        foreach (var p in Model.Products)
+                        {
+
+                            <div class="column is-3-desktop is-4-tablet is-6-mobile">
+                                <a asp-page="Product" asp-route-name="@p.Name.Replace(" ", "-")">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <figure class="image is-4by3 is-relative">
+                                                <img src="~/images/item.jpg" />
+                                            </figure>
+                                        </div>
+
+
+                                        <div class="card-content">
+                                            @{
+                                                string cssClass = "";
+                                                string message = "";
+
+                                                if (p.StockCount == 0)
+                                                {
+                                                    cssClass = "is-danger";
+                                                    message = "Out of Stock";
+                                                }
+                                                else if (p.StockCount <= 10)
+                                                {
+                                                    cssClass = "is-warning";
+                                                    message = "Low on Stock";
+                                                }
+                                            }
+
+                                            @if (p.StockCount <= 10)
+                                            {
+                                                <div class="notification is-paddingless has-text-centered @cssClass">
+                                                    @message
+                                                </div>
+                                            }
+                                            <p class="title is-size-5">
+                                                @p.Name     @p.Value
+                                            </p>
+
+                                            <p class="subtitle is-size-6">
+                                                @p.Description
+                                            </p>
+                                        </div>
                                     </div>
-                                }
-                                <p class="title is-size-5">
-                                    @p.Name     @p.Value
-                                </p>
-
-                                <p class="subtitle is-size-6">
-                                    @p.Description
-                                </p>
+                                </a>
                             </div>
-                        </div>
-                    </a>
+                        }
+
+
+                    }
                 </div>
-            }
-
-
-        }
+            </div>
+        </div>
     </div>
-</div>
+
+</section>
+
+
+
+
+
 
 @*@await Component.InvokeAsync("Cart")*@

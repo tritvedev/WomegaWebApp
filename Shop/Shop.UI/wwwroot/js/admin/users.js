@@ -2,12 +2,12 @@
     el: '#app',
     data: {
         userModel: {
-            firstName: "",
-            lastName: "",
-            userName: "",
-            gstNumber: "",
-            email: "",
-            password: ""
+            firstName: "a",
+            lastName: "b",
+            userName: "c",
+            gstNumber: "29AADCB2230M1ZP",
+            email: "a@gmail.com",
+            password: "1"
         },
         msg: []
     },
