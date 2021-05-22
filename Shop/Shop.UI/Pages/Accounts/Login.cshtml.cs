@@ -28,7 +28,11 @@ namespace Shop.UI.Pages.Accounts
 
             if (result.Succeeded)
             {
-                return RedirectToPage("/Admin/Index");
+                if (User.HasClaim("Role", "Admin") || User.HasClaim("Role", "Manager"))
+                {
+                    return RedirectToPage("/Admin/Index");
+                }
+                return RedirectToPage("/Index");
             }
             else
             {

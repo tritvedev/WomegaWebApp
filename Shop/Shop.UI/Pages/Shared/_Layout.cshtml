@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IAuthorizationService authService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,11 +26,28 @@
                     <img class="image" src="~/images/Womega_Combo.svg" height="360" width="120" />
                 </a>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" asp-page="/Index">
+                @*<img src="~/images/title.png" width="112" height="28" />*@
+                <img class="image" src="~/images/Womega_Combo.svg" height="360" width="120" />
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu is-fullheight">
+            <div class="navbar-start">
+                @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
+                {
+                    <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
+                        Admin
+                    </a>
+                }
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu is-fullheight">

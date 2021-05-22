@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shop.Domain.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Users
@@ -21,10 +22,14 @@ namespace Shop.Application.Users
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                Email = request.Email
+                Email = request.Email,
+                GstNumber = request.GstNumber
             };
+            var userClaim = new Claim("Role", "User");
 
             _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
+            _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
+
 
             return new Response
             {
