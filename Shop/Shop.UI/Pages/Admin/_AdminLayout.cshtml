@@ -23,8 +23,6 @@
 </head>
 <body>
 
-
-
     <!-- START NAV -->
     <nav class="navbar is-white">
         <div class="container">
@@ -60,8 +58,8 @@
             </div>
         </div>
     </nav>
-
     <!-- END NAV -->
+    <!-- START LEFT MENU AND TOP SECONDARY NAVIGARION-->
     <div class="container">
         <div class="columns" style=" width: 100%; height: 100%; margin-left: 0;">
             <div class="column is-3 ">
@@ -89,24 +87,26 @@
                         <li>
                             <a asp-page="/Index">Back to Home</a>
                             @*<ul>
-                                    <li><a>Members</a></li>
-                                    <li><a>Plugins</a></li>
-                                    <li><a>Add a member</a></li>
-                                    <li><a>Remove a member</a></li>
-                                </ul>*@
+                            <li><a>Members</a></li>
+                            <li><a>Plugins</a></li>
+                            <li><a>Add a member</a></li>
+                            <li><a>Remove a member</a></li>
+                        </ul>*@
                         </li>
                     </ul>
                 </aside>
 
             </div>
+            <!-- START SECONDARY NAVIGARION-->
             <div class="column is-9">
+                <!-- START SECONDARY NAVIGARION-->
                 <nav class="breadcrumb" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="../">Admin Panel</a></li>
                         <li class="is-active"><a href="#" aria-current="page">Products</a></li>
                     </ul>
                 </nav>
-
+                <!-- END SECONDARY NAVIGARION-->
                 <div>
                     @RenderBody()
                 </div>
@@ -114,9 +114,8 @@
             </div>
         </div>
     </div>
+    <!-- END LEFT MENU AND TOP SECONDARY NAVIGARION-->
 
-
-    <!-- ----------- -->
 
 
 
