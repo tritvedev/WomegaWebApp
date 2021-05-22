@@ -26,139 +26,139 @@
                     <img class="image" src="~/images/Womega_Combo.svg" height="360" width="120" />
                 </a>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" asp-page="/Index">
-                @*<img src="~/images/title.png" width="112" height="28" />*@
-                <img class="image" src="~/images/Womega_Combo.svg" height="360" width="120" />
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu is-fullheight">
-            <div class="navbar-start">
-                @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
-                {
-                    <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
-                        Admin
-                    </a>
-                }
-            </div>
-
-            <div id="navbarBasicExample" class="navbar-menu is-fullheight">
-                <div class="navbar-start">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
-                            Admin
+                <nav class="navbar" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" asp-page="/Index">
+                            @*<img src="~/images/title.png" width="112" height="28" />*@
+                            <img class="image" src="~/images/Womega_Combo.svg" height="360" width="120" />
                         </a>
-                    }
-                </div>
 
-                <div class="navbar-end">
-
-                    <a class="navbar-item p-4">Products</a>
-                    <a class="navbar-item p-4" asp-page="About">About</a>
-                    <a class="navbar-item p-4" asp-page="Contact us">Contact</a>
-
-
-                    <vc:cart view="Small"></vc:cart>
-
-
-                    <div class="buttons p-4">
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="button is-black " asp-area="" asp-controller="Account" asp-action="Logout">
-
-                                <strong>Sign Out</strong>
-
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="button is-black " asp-area="" asp-page="/Accounts/Login">
-
-                                <strong>Sign In</strong>
-
-                            </a>
-
-                            <a class="button is-black " asp-area="" asp-page="/Accounts/SignUp">
-
-                                <strong>Sign Up</strong>
-
-                            </a>
-                        }
-
+                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
                     </div>
 
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <partial name="_CookieConsentPartial" />
-
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="footer">
-
-        <div class="container">
-
-            <div class="columns">
-                <div class="column">
-                    <div style="align-items:center">
-                        <img src="~/images/Womega_Combo.svg" height="360" width="120" />
-                    </div>
-                </div>
-                <div class="column">
-                    <div style="display: block; padding: 12px; text-align:left; width: min-content; color:black;">
-                        <div style="padding-bottom:10px">
-                            <a style="color: black;">MENU</a>
+                    <div id="navbarBasicExample" class="navbar-menu is-fullheight">
+                        <div class="navbar-start">
+                            @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
+                            {
+                                <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
+                                    Admin
+                                </a>
+                            }
                         </div>
-                        <a style="color: black;">Products</a>
-                        <a style="color: black;">About</a>
-                        <a style="color: black;">Contact</a>
-                        <a style="color: black;">Cart</a>
-                        <a style="color: black;">Sign Out</a>
-                    </div>
-                </div>
-                <div class="column">
-                    <div style="display: block; padding: 12px; text-align:left; width: min-content; color:black;">
-                        <div style="padding-bottom:10px">
-                            <a style="color: black;">CATEGORITS</a>
+
+                        <div id="navbarBasicExample" class="navbar-menu is-fullheight">
+                            <div class="navbar-start">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
+                                        Admin
+                                    </a>
+                                }
+                            </div>
+
+                            <div class="navbar-end">
+
+                                <a class="navbar-item p-4">Products</a>
+                                <a class="navbar-item p-4" asp-page="About">About</a>
+                                <a class="navbar-item p-4" asp-page="Contact us">Contact</a>
+
+
+                                <vc:cart view="Small"></vc:cart>
+
+
+                                <div class="buttons p-4">
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="button is-black " asp-area="" asp-controller="Account" asp-action="Logout">
+
+                                            <strong>Sign Out</strong>
+
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="button is-black " asp-area="" asp-page="/Accounts/Login">
+
+                                            <strong>Sign In</strong>
+
+                                        </a>
+
+                                        <a class="button is-black " asp-area="" asp-page="/Accounts/SignUp">
+
+                                            <strong>Sign Up</strong>
+
+                                        </a>
+                                    }
+
+                                </div>
+
+                            </div>
                         </div>
-                        <a style="color: black;">Category 1</a>
-                        <a style="color: black;">Category 2</a>
-                        <a style="color: black;">Category 3</a>
-                        <a style="color: black;">Category 4</a>
-                        <a style="color: black;">Category 5</a>
+                </nav>
+            </div>
+
+            <partial name="_CookieConsentPartial" />
+
+
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+
+            <footer class="footer">
+
+                <div class="container">
+
+                    <div class="columns">
+                        <div class="column">
+                            <div style="align-items:center">
+                                <img src="~/images/Womega_Combo.svg" height="360" width="120" />
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div style="display: block; padding: 12px; text-align:left; width: min-content; color:black;">
+                                <div style="padding-bottom:10px">
+                                    <a style="color: black;">MENU</a>
+                                </div>
+                                <a style="color: black;">Products</a>
+                                <a style="color: black;">About</a>
+                                <a style="color: black;">Contact</a>
+                                <a style="color: black;">Cart</a>
+                                <a style="color: black;">Sign Out</a>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div style="display: block; padding: 12px; text-align:left; width: min-content; color:black;">
+                                <div style="padding-bottom:10px">
+                                    <a style="color: black;">CATEGORITS</a>
+                                </div>
+                                <a style="color: black;">Category 1</a>
+                                <a style="color: black;">Category 2</a>
+                                <a style="color: black;">Category 3</a>
+                                <a style="color: black;">Category 4</a>
+                                <a style="color: black;">Category 5</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="content has-text-centered" style="margin-block-start:30px;">
-            <p>
-                &copy; 2021 - Womega - <a asp-area="" asp-page="/Privacy">Privacy</a>
-            </p>
-        </div>
-    </footer>
+                <div class="content has-text-centered" style="margin-block-start:30px;">
+                    <p>
+                        &copy; 2021 - Womega - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                    </p>
+                </div>
+            </footer>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    @RenderSection("Scripts", required: false)
+            @RenderSection("Scripts", required: false)
 </body>
 </html>
