@@ -1,5 +1,5 @@
 ﻿@page
-@model Shop.UI.Pages.Accounts.SignUpModel
+@model Shop.Application.Users.CreateUser.Request
 @{
 }
 
@@ -16,8 +16,9 @@
                         <div class="field">
                             <div class="control">
                                 <label class="label">First Name</label>
-                                <input class="input is-large" type="text" placeholder="Enter First Name" autofocus="" v-model="userModel.firstName">
-                                <span v-if="msg.gst">{{msg.firstName}}</span>
+                                <input class="input is-large" type="text" placeholder="Enter First Name" autofocus=""
+                                       v-model="userModel.firstName" asp-for="FirstName">
+                                <span class="help is-danger" asp-validation-for="FirstName"></span>
                             </div>
                         </div>
 
@@ -25,35 +26,35 @@
                             <div class="control">
                                 <label class="label">Last Name</label>
                                 <input class="input is-large" type="text" placeholder="Your Last Name" v-model="userModel.lastName">
-                                <span v-if="msg.gst">{{msg.lastName}}</span>
+                                <span class="help is-danger" asp-validation-for="LastName"></span>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
                                 <label class="label">Username</label>
                                 <input class="input is-large" type="text" placeholder="Enter Username" autofocus="" v-model="userModel.userName">
-                                <span v-if="msg.gst">{{msg.userName}}</span>
+                                <span class="help is-danger" asp-validation-for="UserName"></span>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
                                 <label class="label">GST Number</label>
                                 <input id="gst" class="input is-large" type="text" placeholder="Enter GST Number" autofocus="" v-model="userModel.gstNumber">
-                                <span v-if="msg.gst">{{msg.gst}}</span>
+                                <span class="help is-danger" asp-validation-for="GstNumber"></span>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
                                 <label class="label">Email</label>
                                 <input class="input is-large" type="text" placeholder="Your Email" v-model="userModel.email">
-                                <span v-if="msg.email">{{msg.email}}</span>
+                                <span class="help is-danger" asp-validation-for="Email"></span>
                             </div>
                         </div>
                         <div class="field">
                             <div class="control">
                                 <label class="label">Password</label>
                                 <input class="input is-large" type="password" placeholder="Enter Your Password" v-model="userModel.password">
-                                <span v-if="msg.gst">{{msg.password}}</span>
+                                <span class="help is-danger" asp-validation-for="Password"></span>
                             </div>
                         </div>
                         <div class="field">
@@ -89,7 +90,7 @@
                                 </label>
                             </div>
                         </div>
-                        <button :disabled='isDisabled' @@click="createUser" class="button is-block is-info is-large is-fullwidth">
+                        <button type="submit" class="button is-block is-info is-large is-fullwidth">
                             Sign Up
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                         </button>

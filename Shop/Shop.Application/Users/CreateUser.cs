@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Shop.Domain.Enums;
 using Shop.Domain.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -22,14 +23,23 @@ namespace Shop.Application.Users
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                Email = request.Email,
-                GstNumber = request.GstNumber
+                Email = request.Email
             };
-            var userClaim = new Claim("Role", "User");
 
-            _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
-            _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
+            Claim userClaim;
+            //Gst Number for Wholesale User
+            if (request.IsWholesaleAccount)
+            {
+                user.GstNumber = request.GstNumber;
+                userClaim = new Claim("Role", "WholesaleUser");
+            }
+            else
+            {
+                userClaim = new Claim("Role", "RetailUser");
+            }
 
+            _ = _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
+            _ = _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
 
             return new Response
             {
@@ -50,6 +60,7 @@ namespace Shop.Application.Users
             public string GstNumber { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
+            public bool IsWholesaleAccount { get; set; }
         }
 
         public class Response
