@@ -31,15 +31,16 @@ namespace Shop.Application.Users
             if (request.IsWholesaleAccount)
             {
                 user.GstNumber = request.GstNumber;
-                userClaim = new Claim("Role", "WholesaleUser");
+                //userClaim = new Claim("Role", "WholesaleUser");
+                //TODO: Create a Account Ticket
             }
             else
             {
                 userClaim = new Claim("Role", "RetailUser");
+                _ = _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
+                _ = _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
             }
 
-            _ = _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
-            _ = _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
 
             return new Response
             {
