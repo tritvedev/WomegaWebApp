@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using Shop.Application.Users;
 using Shop.Domain.Models;
 using Shop.UI.ViewModel.Admin;
