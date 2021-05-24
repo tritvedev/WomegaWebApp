@@ -1,4 +1,6 @@
-﻿.StripeElement {
+﻿
+
+.StripeElement {
     background-color: white;
     height: 40px;
     padding: 10px 20px;
@@ -65,5 +67,3 @@
     float: right;
     padding-top: 16px;
 }
-
-
