@@ -32,3 +32,8 @@ This is an E-Commerce Web Application for Womega Online Shopping.
 ## Layers (internal Projects)
 
 In Application layer, all it's going to do is handle all of our models in our domain between the database  & UI layer. Thus, Application acts like API for the WomegaWebApp. WomegaWebApp.Application Project is responsible for handling our domain which means here, we are gonna create out products, storing them into database and it's basically a pipeline between domain and UI and database.
+
+## Database migraton code
+	- dotnet ef --startup-project ../Shop.UI migrations add init
+
+	- dotnet ef --startup-project ../Shop.UI database update
