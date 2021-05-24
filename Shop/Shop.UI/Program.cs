@@ -38,7 +38,7 @@ namespace Shop.UI
                         };
 
                         var adminClaim = new Claim("Role", "Admin");
-                        userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
+                        var temp = userManager.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
                         userManager.AddClaimAsync(adminUser, adminClaim).GetAwaiter().GetResult();
                     }
                     if (!context.Users.Any(x => x.UserName == "manager"))
