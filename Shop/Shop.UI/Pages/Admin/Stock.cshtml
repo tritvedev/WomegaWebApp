@@ -5,39 +5,97 @@
 
 <div id="app">
     <div class="columns">
-        <div class="column is-3">
-            <table class="table">
-                <tr v-for="product in products" @@click="selectProduct(product)">
-                    <td>{{product.description}}</td>
-                </tr>
-            </table>
+
+        <!-- START PRODUCTS -->
+        <div class="column is-narrow">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Products
+                    </p>
+                </header>
+                <div class="card-table">
+                    <div class="content has-text-centered">
+                        <table class="table is-narrow is-striped is-hoverable">
+                            <tr v-for="product in products" @@click="selectProduct(product)">
+                                <td>{{product.description}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item"></a>
+                    @*<a href="#" class="card-footer-item">View All</a>*@
+                </footer>
+            </div>
         </div>
-        <div class="column is-6" v-if="selectedProduct">
-            <table class="table" >
-                <tr v-for="(stock, index) in selectedProduct.stock">
-                    <td><input class="input" v-model="stock.description" /></td>
-                    <td><input class="input" v-model.number="stock.qty" /></td>
-                    <td><a class="has-text-danger" @@click="deleteStock(stock.id, index)">Delete</a></td>
-                </tr>
-            </table>
-            <a class="button is-warning" @@click="updateStock"> 
-                Update Products 
-            </a>
-        </div>
-        <div class="column is-3" v-if="selectedProduct">
-            <h2 class="title"> New Stock</h2>
-            <div class="field">
-                <div class="control">
-                    <input class="input" v-model="newStock.description" />
+        <!--END PRODUCTS -->
+        <!--START NEW STOCK -->
+        <div class="has-text-centered">
+            <div class="column is-narrow" v-if="selectedProduct">
+                <div class="card admin-panel-cards">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            New Stock
+                        </p>
+                    </header>
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-narrow is-hoverable">
+                                <tr v-for="(stock, index) in selectedProduct.stock">
+                                    <td><input class="input" v-model="stock.description" /></td>
+                                    <td><input class="input" v-model.number="stock.qty" /></td>
+                                    <td><button class="button is-danger is-outlined" @@click="deleteStock(stock.id, index)">Delete</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="button-center">
+                        <button class="button is-block is-info admin-panel-button" @@click="updateStock">Update Products</button>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" v-model.number="newStock.qty"/>
+        </div>
+        <!--END NEW STOCK -->
+        <!--START ADD NEW STOCK -->
+
+        <div class="container has-text-centered">
+            <div class="column is-narrow" v-if="selectedProduct">
+                <div class="card admin-panel-cards">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Add New stock
+                        </p>
+                    </header>
+                    <div class="card-table">
+                        <div class="content">
+
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" v-model="newStock.description" />
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" v-model.number="newStock.qty" />
+                                </div>
+                            </div>
+                            <div class="admin-panel-button">
+                                <button class="button is-block is-info admin-panel-button is-fullwidth" @@click="addStock">Add</button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a class="button is-success" @@click="addStock">Add</a>
         </div>
+        <!--END ADD NEW STOCK -->
+
+
+
+
+
+
     </div>
 </div>
 

@@ -28,7 +28,7 @@ nav.navbar {
 
 .menu-label {
     color: #8F99A3;
-    letter-spacing: 1.3;
+/*    letter-spacing: 1.3;*/
     font-weight: 700;
 }
 
@@ -44,7 +44,7 @@ nav.navbar {
     }
 
     .menu-list a.is-active {
-        background-color: transparent;
+        background-color: #d69647 !important;
         color: #276cda;
         font-weight: 700;
     }
@@ -69,9 +69,9 @@ nav.navbar {
     }
 
 .hero.welcome.is-info {
-    background: #36D1DC;
-    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
-    background: linear-gradient(to right, #5B86E5, #36D1DC);
+    background: #d1d647;
+    background: -webkit-linear-gradient(to right, #d69647, #d1d647);
+    background: linear-gradient(to right, #d69647, #d1d647);
 }
 
 .hero.welcome .title, .hero.welcome .subtitle {
@@ -100,8 +100,22 @@ nav.navbar {
     overflow-y: scroll;
 }
 
-.new-product-button {
-    align-content:center;
-    align-items:center;
+.button-center {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.container-admin-panel {
+    padding-bottom:3%;
+}
+
+.admin-panel-cards {
+    padding:9px;
+}
+
+button.admin-panel-button {
+    background-color: #ffdb4a !important;
+    display: block !important;
 }
 
