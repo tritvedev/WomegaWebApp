@@ -173,6 +173,10 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
+body.fonts {
+    font-family: Montserrat, sans-serif;
+}
+
 .custom-navigation {
     font-family: Montserrat, sans-serif;
     opacity: 0.6;
