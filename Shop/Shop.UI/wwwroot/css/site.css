@@ -168,3 +168,35 @@ body.contact-page {
     font-weight: 400;
     line-height: 1.5;
 }
+
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+.custom-navigation {
+    font-family: Montserrat, sans-serif;
+    opacity: 0.6;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #222222;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:small !important;
+}
+
+.custom-navigation-button {
+    font-family: Montserrat, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small !important;
+}
