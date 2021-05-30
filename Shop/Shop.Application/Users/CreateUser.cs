@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shop.Domain.Enums;
+using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -9,11 +11,15 @@ namespace Shop.Application.Users
     [Service]
     public class CreateUser
     {
-        private UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IAccountTicketManager _ticketManager;
 
-        public CreateUser(UserManager<User> userManager)
+        private readonly DateTimeOffset lockOutEnd = new DateTimeOffset(new DateTime(2100, 01, 01));
+
+        public CreateUser(UserManager<User> userManager, IAccountTicketManager ticketManager)
         {
             _userManager = userManager;
+            _ticketManager = ticketManager;
         }
 
         public async Task<Response> Do(Request request)
@@ -27,19 +33,29 @@ namespace Shop.Application.Users
             };
 
             Claim userClaim;
-            //Gst Number for Wholesale User
+
+            //Extra fields fot Wholesale Users
             if (request.IsWholesaleAccount)
             {
                 user.GstNumber = request.GstNumber;
-                //userClaim = new Claim("Role", "WholesaleUser");
-                //TODO: Create a Account Ticket
+                user.LockoutEnabled = true;
+                user.LockoutEnd = lockOutEnd;
+                var ticket = new AccountTicket
+                {
+                    AppUserId = user.Id,
+                    CompanyName = request.CommanyName,
+                    Status = TicketStatus.Pending
+                };
+                _ = _ticketManager.CreateAccountTicket(ticket).GetAwaiter().GetResult();
+                userClaim = new Claim("Role", "WholesaleUser");
             }
             else
             {
                 userClaim = new Claim("Role", "RetailUser");
-                _ = _userManager.CreateAsync(user, request.Password).GetAwaiter().GetResult();
-                _ = _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
             }
+
+            _ = await _userManager.CreateAsync(user, request.Password);
+            _ = _userManager.AddClaimAsync(user, userClaim).GetAwaiter().GetResult();
 
 
             return new Response
@@ -48,8 +64,7 @@ namespace Shop.Application.Users
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
-                Email = user.Email,
-                Password = user.PasswordHash
+                Email = user.Email
             };
         }
 
@@ -59,6 +74,7 @@ namespace Shop.Application.Users
             public string LastName { get; set; }
             public string UserName { get; set; }
             public string GstNumber { get; set; }
+            public string CommanyName { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
             public bool IsWholesaleAccount { get; set; }
@@ -70,9 +86,7 @@ namespace Shop.Application.Users
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string UserName { get; set; }
-            public string GstNumber { get; set; }
             public string Email { get; set; }
-            public string Password { get; set; }
         }
     }
 }

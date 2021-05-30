@@ -7,7 +7,7 @@ namespace Shop.Domain.Models
 {
     public class AccountTicket
     {
-        public User AppUser { get; set; }
+        public string AppUserId { get; set; }
         public string CompanyName { get; set; }
         public TicketStatus Status { get; set; }
     }

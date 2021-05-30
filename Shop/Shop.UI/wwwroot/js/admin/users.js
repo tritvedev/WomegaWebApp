@@ -6,8 +6,10 @@
             lastName: "b",
             userName: "c",
             gstNumber: "29AADCB2230M1ZP",
+            companyName: "xyz inc",
             email: "a@gmail.com",
-            password: "1"
+            password: "1",
+            isWholesaleAccount: true
         }
     },
     mounted() {
