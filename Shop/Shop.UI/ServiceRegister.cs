@@ -31,6 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
             @this.AddTransient<IProductManager, ProductManager>();
             @this.AddTransient<IOrderManager, OrderManager>();
             @this.AddScoped<ISessionManager, SessionManager>();
+            @this.AddScoped<IAccountTicketManager, AccountTicketManager>();
             @this.AddTransient<UserManager<User>>();
 
             return @this;

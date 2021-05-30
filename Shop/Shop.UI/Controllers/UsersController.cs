@@ -16,8 +16,14 @@ namespace Shop.UI.Controllers
          */
 
         [HttpPost("")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUser.Request request, [FromServices] CreateUser createuser) =>
-            Ok((await createuser.Do(request)));
+        public async Task<IActionResult> CreateUser([FromBody] CreateUser.Request request, [FromServices] CreateUser createuser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            return Ok((await createuser.Do(request)));
+        }
 
     }
 }
