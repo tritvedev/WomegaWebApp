@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Shop.Application.Cart.GetCart.Response>
 
 
+
 <div class="column is-8 is-offset-2" id="cart-main">
 
     @foreach (var product in Model)
@@ -50,10 +51,11 @@
 
     <div class="has-text-right">
         <a asp-page="/Index" class="button is-text"> Continue Shopping </a>
-        @if(Model.Count() > 0)
+        @if (Model.Count() > 0)
         {
             <a asp-page="/Checkout/CustomerInformation" class="button is-success"> Checkout </a>
         }
     </div>
 
 </div>
+

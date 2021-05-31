@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Shop.UI</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 
     <environment include="Development">
         <link href="~/lib/bulma/css/bulma.css" rel="stylesheet" />
@@ -17,7 +18,8 @@
     </environment>
 
 </head>
-<body>
+<body class="fonts">
+
     <div id="navbar-container" class="container">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -38,7 +40,7 @@
                 <div class="navbar-start">
                     @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
                     {
-                        <a class="navbar-item" asp-area="" asp-page="/Admin/Index">
+                        <a class="navbar-item custom-navigation" asp-area="" asp-page="/Admin/Index">
                             Admin
                         </a>
                     }
@@ -46,36 +48,36 @@
 
                 <div class="navbar-end">
 
-                    <a class="navbar-item p-4">Products</a>
-                    <a class="navbar-item p-4" asp-page="About">About</a>
-                    <a class="navbar-item p-4" asp-page="Contact us">Contact</a>
-
+                    <a class="navbar-item p-4 custom-navigation" asp-page="Products/ProductsCategory">Products</a>
+                    <a class="navbar-item p-4 custom-navigation" asp-page="About">About</a>
+                    <a class="navbar-item p-4 custom-navigation" asp-page="Contact">Contact</a>
 
                     <vc:cart view="Small"></vc:cart>
 
 
-                    <div class="buttons p-4">
+                    <div class="buttons p-4 ">
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="button is-black " asp-area="" asp-controller="Account" asp-action="Logout">
-
+                        <a class="button is-black is-rounded" asp-area="" asp-controller="Account" asp-action="Logout">
+                            <div class="custom-navigation-button">
                                 <strong>Sign Out</strong>
-
-                            </a>
+                            </div>
+                        </a>
                         }
                         else
                         {
-                            <a class="button is-black " asp-area="" asp-page="/Accounts/Login">
-
+                            <a class="button is-black is-rounded" asp-area="" asp-page="/Accounts/Login">
+                                <div class="custom-navigation-button">
                                 <strong>Sign In</strong>
+                                </div>
 
                             </a>
 
-                            <a class="button is-black " asp-area="" asp-page="/Accounts/SignUp">
-
-                                <strong>Sign Up</strong>
-
+                            <a class="button is-black is-rounded " asp-area="" asp-page="/Accounts/SignUp">
+                                <div class="custom-navigation-button">
+                                    <strong>Sign Up</strong>
+                                </div>
                             </a>
                         }
 

@@ -1,112 +1,128 @@
 ﻿@page
-@model Shop.UI.Pages.Accounts.SignUpModel
+@model Shop.Application.Users.CreateUser.Request
 @{
 }
 
-<section class="is-success is-fullheight">
-    <div id="app" class="hero-body">
-        <div class="container has-text-left">
-            @*is-offset-4*@
-            <div class="column is-9">
-                <h3 class="title has-text-black">Sign Up</h3>
-                <hr class="login-hr">
-                <p class="subtitle has-text-black">Please fill the details to Sign in.</p>
-                <div class="box">
-                    <form method="post">
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">First Name</label>
-                                <input class="input is-large" type="text" placeholder="Enter First Name" autofocus="" v-model="userModel.firstName">
-                                <span v-if="msg.gst">{{msg.firstName}}</span>
+<body class="fonts">
+    <section class="is-success is-fullheight">
+        <div id="app" class="hero-body">
+            <div class="container has-text-left">
+                <div class="column is-7 is-offset-3">
+                    <h3 class="title has-text-black">Sign Up</h3>
+                    <hr class="login-hr">
+                    <p class="subtitle has-text-black">Please fill the details to Sign in.</p>
+                    <div class="box">
+                        <form method="post">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox" v-model="userModel.isWholesaleAccount">
+                                        Whole Sale Buyer
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">First Name</label>
+                                    <input class="input is-large" type="text" placeholder="Enter First Name" autofocus=""
+                                           v-model="userModel.firstName" asp-for="FirstName">
+                                    <span class="help is-danger" asp-validation-for="FirstName"></span>
+                                </div>
+                            </div>
 
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Last Name</label>
-                                <input class="input is-large" type="text" placeholder="Your Last Name" v-model="userModel.lastName">
-                                <span v-if="msg.gst">{{msg.lastName}}</span>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Last Name</label>
+                                    <input class="input is-large" type="text" placeholder="Your Last Name" v-model="userModel.lastName">
+                                    <span class="help is-danger" asp-validation-for="LastName"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Username</label>
-                                <input class="input is-large" type="text" placeholder="Enter Username" autofocus="" v-model="userModel.userName">
-                                <span v-if="msg.gst">{{msg.userName}}</span>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Username</label>
+                                    <input class="input is-large" type="text" placeholder="Enter Username" autofocus="" v-model="userModel.userName">
+                                    <span class="help is-danger" asp-validation-for="UserName"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">GST Number</label>
-                                <input id="gst" class="input is-large" type="text" placeholder="Enter GST Number" autofocus="" v-model="userModel.gstNumber">
-                                <span v-if="msg.gst">{{msg.gst}}</span>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">GST Number</label>
+                                    <input id="gst" class="input is-large" type="text" placeholder="Enter GST Number" autofocus="" v-model="userModel.gstNumber">
+                                    <span class="help is-danger" asp-validation-for="GstNumber"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Email</label>
-                                <input class="input is-large" type="text" placeholder="Your Email" v-model="userModel.email">
-                                <span v-if="msg.email">{{msg.email}}</span>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Company Name</label>
+                                    <input id="gst" class="input is-large" type="text" placeholder="Enter Your Company Name" autofocus="" v-model="userModel.companyName">
+                                    <span class="help is-danger" asp-validation-for="CommanyName"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Password</label>
-                                <input class="input is-large" type="password" placeholder="Enter Your Password" v-model="userModel.password">
-                                <span v-if="msg.gst">{{msg.password}}</span>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Email</label>
+                                    <input class="input is-large" type="text" placeholder="Your Email" v-model="userModel.email">
+                                    <span class="help is-danger" asp-validation-for="Email"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Confirm Password</label>
-                                <input class="input is-large" type="password" placeholder="Re-Enter Your Password">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Password</label>
+                                    <input class="input is-large" type="password" placeholder="Enter Your Password" v-model="userModel.password">
+                                    <span class="help is-danger" asp-validation-for="Password"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <label class="label">Gender</label>
-                                <label class="radio">
-                                    <input type="radio" name="answer">
-                                    Male
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="answer">
-                                    Female
-                                </label>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Confirm Password</label>
+                                    <input class="input is-large" type="password" placeholder="Re-Enter Your Password">
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
-                            </label>
-                        </div>
-                        <div class="field pt-3">
-                            <div class="control">
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Gender</label>
+                                    <label class="radio">
+                                        <input type="radio" name="answer">
+                                        Male
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="answer">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
                                 <label class="checkbox">
                                     <input type="checkbox">
-                                    I agree to the <a href="#">terms and conditions</a>
+                                    Remember me
                                 </label>
                             </div>
-                        </div>
-                        <button :disabled='isDisabled' @@click="createUser" class="button is-block is-info is-large is-fullwidth">
-                            Sign Up
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        </button>
-                    </form>
+                            <div class="field pt-3">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        I agree to the <a href="#">terms and conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" @@click="createUser" class="button is-block is-info is-large is-fullwidth">
+                                Sign Up
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <p class="has-text-grey">
+                        <a href="../">Sign In</a> &nbsp;·&nbsp;
+                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
+                        <a href="../">Need Help?</a>
+                    </p>
                 </div>
-                <p class="has-text-grey">
-                    <a href="../">Sign In</a> &nbsp;·&nbsp;
-                    <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                    <a href="../">Need Help?</a>
-                </p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</body>
 
 
-
-@section scripts{
-    <script src="~/js/admin/users.js"></script>
-}
+    @section scripts{
+        <script src="~/js/admin/users.js"></script>
+    }

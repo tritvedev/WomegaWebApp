@@ -221,6 +221,22 @@ namespace Shop.Database.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Shop.Domain.Models.AccountTicket", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId");
+
+                    b.ToTable("AccountTickets");
+                });
+
             modelBuilder.Entity("Shop.Domain.Models.Order", b =>
                 {
                     b.Property<int>("Id")
