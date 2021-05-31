@@ -71,9 +71,10 @@
                             STORE MENU
                         </p>
                         <ul class="menu-list">
-                            <li><a class="is-active"  asp-page="/Admin/Index">Products</a></li>
+                            <li><a class="is-active" asp-page="/Admin/Index">Products</a></li>
                             <li><a asp-page="/Admin/Orders">Orders</a></li>
                             <li><a asp-page="/Admin/Stock">Stock</a></li>
+                            <li><a asp-page="/Admin/AccountTickets/AccountTickets">Account Tickets</a></li>
                         </ul>
                     }
                     <p class="menu-label">
@@ -100,12 +101,12 @@
             <!-- START SECONDARY NAVIGARION-->
             <div class="column is-9">
                 <!-- START SECONDARY NAVIGARION-->
-                <nav class="breadcrumb" aria-label="breadcrumbs">
+                @*<nav class="breadcrumb" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="../">Admin Panel</a></li>
                         <li class="is-active"><a href="#" aria-current="page">Products</a></li>
                     </ul>
-                </nav>
+                </nav>*@
                 <!-- END SECONDARY NAVIGARION-->
                 <div>
                     @RenderBody()

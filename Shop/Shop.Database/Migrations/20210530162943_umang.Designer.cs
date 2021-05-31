@@ -10,8 +10,8 @@ using Shop.Database;
 namespace Shop.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210530131350_wholesaleDb")]
-    partial class wholesaleDb
+    [Migration("20210530162943_umang")]
+    partial class umang
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

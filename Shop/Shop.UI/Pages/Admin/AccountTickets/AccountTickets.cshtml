@@ -1,0 +1,70 @@
+﻿@page
+@model Shop.UI.Pages.Admin.AccountTickets.AccountTicketsModel
+@{
+}
+
+<div class="tabs is-centered">
+    <ul>
+        <li class="is-active"><a>Pending</a></li>
+        <li><a asp-page="/Admin/AccountTickets/AccountTicket_Approval">Approved</a></li>
+        <li><a asp-page="/Admin/AccountTickets/AccountTicket_Declined">Declined</a></li>
+    </ul>
+</div>
+
+<div class="card events-card">
+    <header class="card-header">
+        <p class="card-header-title">
+            GST Number Varification
+        </p>
+        <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+        </a>
+    </header>
+    <div>
+        <div class="card-table">
+            <div class="content">
+                <table class="table is-fullwidth is-striped">
+                    <tbody>
+
+                        <tr>
+                            <th>Name</th>
+                            <th>Companey Name</th>
+                            <th>GST No.</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>Umang Kaswala</td>
+                            <td>Tritve</td>
+                            <td>18AABCU9603R1ZM</td>
+                            <td><a href="#" @@click="editProduct(product.id, index)"> Approve </a></td>
+                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
+                        </tr>
+                        <tr>
+                            <td>Keyur Vithani</td>
+                            <td>Tritve</td>
+                            <td>18AABCU9603R1ZM</td>
+                            <td><a href="#" @@click="editProduct(product.id, index)"> Approve </a></td>
+                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
+                        </tr>
+                        <tr>
+                            <td>Prithvi Patel</td>
+                            <td>Tritve</td>
+                            <td>18AABCU9603R1ZM</td>
+                            <td><a href="#" @@click="editProduct(product.id, index)"> Approve </a></td>
+                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="card-footer">
+        <a href="#" class="card-footer-item">View All</a>
+    </footer>
+</div>

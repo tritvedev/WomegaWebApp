@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Shop.Database.Migrations
 {
-    public partial class wholesaleDb : Migration
+    public partial class umang : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
