@@ -15,6 +15,14 @@
                         <form method="post">
                             <div class="field">
                                 <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox" v-model="userModel.isWholesaleAccount">
+                                        Whole Sale Buyer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
                                     <label class="label">First Name</label>
                                     <input class="input is-large" type="text" placeholder="Enter First Name" autofocus=""
                                            v-model="userModel.firstName" asp-for="FirstName">
@@ -41,6 +49,13 @@
                                     <label class="label">GST Number</label>
                                     <input id="gst" class="input is-large" type="text" placeholder="Enter GST Number" autofocus="" v-model="userModel.gstNumber">
                                     <span class="help is-danger" asp-validation-for="GstNumber"></span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="label">Company Name</label>
+                                    <input id="gst" class="input is-large" type="text" placeholder="Enter Your Company Name" autofocus="" v-model="userModel.companyName">
+                                    <span class="help is-danger" asp-validation-for="CommanyName"></span>
                                 </div>
                             </div>
                             <div class="field">
