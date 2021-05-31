@@ -173,9 +173,9 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-body.fonts {
-    font-family: Montserrat, sans-serif;
-}
+    body.fonts {
+        font-family: Montserrat, sans-serif;
+    }
 
 .custom-navigation {
     font-family: Montserrat, sans-serif;
@@ -189,7 +189,7 @@ body.fonts {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    font-size:small !important;
+    font-size: small !important;
 }
 
 .custom-navigation-button {
@@ -204,3 +204,45 @@ body.fonts {
     margin-right: auto;
     font-size: small !important;
 }
+
+.cart-page {
+    margin: 80px auto !important;
+}
+
+.cart-info {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+table.cart-table-design {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+th.cart-product-head {
+    text-align: left !important;
+    padding: 5px !important;
+    color: #fff;
+    font-weight: normal !important;
+}
+
+td.cart-design {
+    padding: 10px 5px !important;
+}
+
+    td.cart-design input {
+        width: 40px !important;
+        height: 30px !important;
+        padding: 5px !important;
+    }
+
+    td.cart-design a {
+        color: #ff523b !important;
+        font-size: 12px !important;
+    }
+
+    td.cart-design img {
+        width: 80px !important;
+        height: 80px !important;
+        margin-right:10px !important;
+    }
