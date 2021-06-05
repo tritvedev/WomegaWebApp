@@ -12,6 +12,7 @@ namespace Shop.Domain.Infrastructure
         Task<int> DeleteAccountTicket(string id);
         Task<int> UpdateAccountTicket(AccountTicket ticket);
 
+        IEnumerable<TResult> GetAccountTickets<TResult>(Func<AccountTicket, TResult> selector);
         TResult GetAccountTicketById<TResult>(string id, Func<AccountTicket, TResult> selector);
     }
 }

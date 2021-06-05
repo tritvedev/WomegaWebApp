@@ -39,6 +39,11 @@ namespace Shop.Database
             return _ctx.SaveChangesAsync();
         }
 
+        public IEnumerable<TResult> GetAccountTickets<TResult>(Func<AccountTicket, TResult> selector)
+        {
+            return _ctx.AccountTickets.Select(selector);
+        }
+
         public TResult GetAccountTicketById<TResult>(string id, Func<AccountTicket, TResult> selector)
         {
             return _ctx.AccountTickets
