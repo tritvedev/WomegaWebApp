@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Infrastructure;
+﻿using Shop.Domain.Enums;
+using Shop.Domain.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,7 @@ namespace Shop.Application.Products
                 Name = x.Name,
                 Description = x.Description,
                 Value = x.Value.GetValueString(),
+                Category = x.Category,
 
                 StockCount = x.Stock.Sum(y => y.Qty)
             });
@@ -28,6 +30,7 @@ namespace Shop.Application.Products
         {
             public string Name { get; set; }
             public string Description { get; set; }
+            public Category Category { get; set; }
             public string Value { get; set; }
             public int StockCount { get; set; }
         }

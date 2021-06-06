@@ -8,6 +8,7 @@ using System.Text;
 
 namespace Shop.Application.AccountTickets
 {
+    [Service]
     public class GetAccountTickets
     {
         readonly IAccountTicketManager _accountTicketManager;

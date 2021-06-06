@@ -158,8 +158,6 @@ namespace Shop.Database.Cart
             }
 
             return Task.CompletedTask;
-
-
         }
     }
 }

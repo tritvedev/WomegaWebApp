@@ -28,31 +28,20 @@
                 <table class="table is-fullwidth is-striped">
                     <tbody>
 
-                        <tr>
-                            <th>Name</th>
-                            <th>Companey Name</th>
-                            <th>GST No.</th>
-                            <th></th>
-                        </tr>
+                        @foreach (var x in Model.AccountTickets)
+                        {
+                            if (x.Status == Domain.Enums.TicketStatus.Approved)
+                            {
+                                <tr>
+                                    <td>@x.FullName</td>
+                                    <td>@x.CompanyName</td>
+                                    <td>@x.GstNumber</td>
+                                    <td><a href="#" @@click="editProduct(product.id, index)"> Approve </a></td>
+                                    <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
+                                </tr>
+                            }
+                        }
 
-                        <tr>
-                            <td>Umang Kaswala</td>
-                            <td>Tritve</td>
-                            <td>18AABCU9603R1ZM</td>
-                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
-                        </tr>
-                        <tr>
-                            <td>Keyur Vithani</td>
-                            <td>Tritve</td>
-                            <td>18AABCU9603R1ZM</td>
-                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
-                        </tr>
-                        <tr>
-                            <td>Prithvi Patel</td>
-                            <td>Tritve</td>
-                            <td>18AABCU9603R1ZM</td>
-                            <td><a href="#" @@click="deleteProduct(product.id, index)"> Decline </a></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

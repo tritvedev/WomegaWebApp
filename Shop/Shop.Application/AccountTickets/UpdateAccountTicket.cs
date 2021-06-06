@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.AccountTickets
 {
+    [Service]
+
     public class UpdateAccountTicket
     {
         readonly IAccountTicketManager _accountTicketManager;

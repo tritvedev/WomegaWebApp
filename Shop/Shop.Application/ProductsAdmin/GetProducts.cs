@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Infrastructure;
+﻿using Shop.Domain.Enums;
+using Shop.Domain.Infrastructure;
 using System.Collections.Generic;
 
 namespace Shop.Application.ProductsAdmin
@@ -20,12 +21,14 @@ namespace Shop.Application.ProductsAdmin
                 Id = x.Id,
                 Name = x.Name,
                 Value = x.Value,
+                Category = x.Category
             });
 
         public class ProductViewModel
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public Category Category { get; set; }
             public decimal Value { get; set; }
         }
     }

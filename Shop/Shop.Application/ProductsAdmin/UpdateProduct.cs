@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Infrastructure;
+﻿using Shop.Domain.Enums;
+using Shop.Domain.Infrastructure;
 using System.Threading.Tasks;
 
 namespace Shop.Application.ProductsAdmin
@@ -20,6 +21,7 @@ namespace Shop.Application.ProductsAdmin
             product.Name = request.Name;
             product.Description = request.Description;
             product.Value = request.Value;
+            product.Category = request.Category;
 
             await _productManager.UpdateProduct(product);
 
@@ -28,6 +30,7 @@ namespace Shop.Application.ProductsAdmin
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
+                Category = product.Category,
                 Value = product.Value
             };
         }
@@ -37,6 +40,7 @@ namespace Shop.Application.ProductsAdmin
             public int Id { get; set; }
             public string Name { get; set; }
             public string Description { get; set; }
+            public Category Category { get; set; }
             public decimal Value { get; set; }
         }
 
@@ -45,8 +49,9 @@ namespace Shop.Application.ProductsAdmin
             public int Id { get; set; }
             public string Name { get; set; }
             public string Description { get; set; }
+            public Category Category { get; set; }
             public decimal Value { get; set; }
         }
     }
-   
+
 }

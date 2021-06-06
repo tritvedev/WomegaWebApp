@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Infrastructure;
+﻿using Shop.Domain.Enums;
+using Shop.Domain.Infrastructure;
 using Shop.Domain.Models;
 using System;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Shop.Application.ProductsAdmin
             {
                 Name = request.Name,
                 Description = request.Description,
+                Category = request.Category,
                 Value = request.Value
             };
 
@@ -34,6 +36,7 @@ namespace Shop.Application.ProductsAdmin
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
+                Category = product.Category,
                 Value = product.Value
             };
         }
@@ -47,6 +50,7 @@ namespace Shop.Application.ProductsAdmin
         {
             public string Name { get; set; }
             public string Description { get; set; }
+            public Category Category { get; set; }
             public decimal Value { get; set; }
         }
 
@@ -55,6 +59,7 @@ namespace Shop.Application.ProductsAdmin
             public int Id { get; set; }
             public string Name { get; set; }
             public string Description { get; set; }
+            public Category Category { get; set; }
             public decimal Value { get; set; }
         }
     }

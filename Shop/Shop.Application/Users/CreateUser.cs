@@ -43,7 +43,7 @@ namespace Shop.Application.Users
                 var ticket = new AccountTicket
                 {
                     AppUserId = user.Id,
-                    CompanyName = request.CommanyName,
+                    CompanyName = request.CompanyName,
                     Status = TicketStatus.Pending
                 };
                 _ = _ticketManager.CreateAccountTicket(ticket).GetAwaiter().GetResult();
@@ -74,7 +74,7 @@ namespace Shop.Application.Users
             public string LastName { get; set; }
             public string UserName { get; set; }
             public string GstNumber { get; set; }
-            public string CommanyName { get; set; }
+            public string CompanyName { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
             public bool IsWholesaleAccount { get; set; }
